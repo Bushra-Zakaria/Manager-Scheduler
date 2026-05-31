@@ -9,8 +9,6 @@
 <meta name="apple-mobile-web-app-title" content="مساعد المدير"/>
 <title>مساعد المدير</title>
 <link rel="manifest" href="manifest.json"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 :root{
@@ -26,28 +24,28 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden}
 input,select,textarea,button{font-family:var(--font)}
+.app{display:none;flex-direction:column;min-height:100dvh;max-width:900px;margin:0 auto}
+.app.show{display:flex}
 
-/* Login screen */
+/* Login */
 .login-screen{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:20px}
 .login-box{background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius);padding:32px 24px;max-width:380px;width:100%;text-align:center}
 .login-logo{font-size:48px;margin-bottom:16px}
 .login-title{font-size:22px;font-weight:600;margin-bottom:8px}
 .login-sub{font-size:14px;color:var(--text2);margin-bottom:28px;line-height:1.6}
-.google-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:#fff;color:#1a1a1a;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer;transition:opacity .15s}
-.google-btn:hover{opacity:.9}
+.google-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:#fff;color:#1a1a1a;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer}
 .google-btn:active{opacity:.8}
-.google-icon{width:20px;height:20px}
 .login-note{font-size:12px;color:var(--text3);margin-top:16px;line-height:1.5}
 
-/* App layout */
-.app{display:flex;flex-direction:column;min-height:100dvh;max-width:900px;margin:0 auto;display:none}
+/* Header */
 .header{padding:14px 20px 10px;border-bottom:1px solid var(--bg2);display:flex;align-items:center;justify-content:space-between;gap:12px}
-.header-clock{font-size:26px;font-weight:600;letter-spacing:-1px;line-height:1}
-.header-date{font-size:13px;color:var(--text2)}
-.header-left{display:flex;align-items:center;gap:10px}
-.user-avatar{width:34px;height:34px;border-radius:50%;border:2px solid var(--accent);object-fit:cover;cursor:pointer}
-.user-initial{width:34px;height:34px;border-radius:50%;background:var(--accent-dim);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;cursor:pointer;flex-shrink:0}
-.next-badge{background:var(--accent-dim);color:var(--accent);border-radius:var(--radius-sm);padding:5px 9px;font-size:11px;font-weight:500;text-align:center;max-width:180px;line-height:1.4;display:none}
+.header-clock{font-size:24px;font-weight:600;letter-spacing:-1px;line-height:1}
+.header-date{font-size:12px;color:var(--text2)}
+.header-right{display:flex;align-items:center;gap:10px}
+.next-badge{background:var(--accent-dim);color:var(--accent);border-radius:var(--radius-sm);padding:5px 9px;font-size:11px;font-weight:500;display:none;max-width:160px;line-height:1.4}
+.user-initial{width:32px;height:32px;border-radius:50%;background:var(--accent-dim);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;cursor:pointer;flex-shrink:0}
+
+/* Nav */
 .nav{display:flex;gap:4px;padding:10px 16px;border-bottom:1px solid var(--bg2);overflow-x:auto;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
 .nav-btn{padding:8px 14px;border-radius:var(--radius-sm);border:none;cursor:pointer;font-size:13px;font-weight:500;white-space:nowrap;background:transparent;color:var(--text2);transition:background .15s}
@@ -57,6 +55,8 @@ input,select,textarea,button{font-family:var(--font)}
 .content.active{display:block}
 .card{background:var(--bg2);border-radius:var(--radius);padding:16px;margin-bottom:12px;border:1px solid var(--bg3)}
 .card-title{font-size:14px;font-weight:600;color:var(--text2);margin-bottom:12px}
+
+/* Meetings */
 .meeting{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--bg3)}
 .meeting:last-child{border-bottom:none;padding-bottom:0}
 .meeting-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);margin-top:5px;flex-shrink:0}
@@ -78,40 +78,58 @@ input,select,textarea,button{font-family:var(--font)}
 .del-btn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:16px;padding:2px}
 .del-btn:hover{color:var(--red)}
 .edit-btn{background:none;border:none;cursor:pointer;color:var(--accent);font-size:14px;padding:2px}
+
+/* Forms */
 .form-row{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
 .form-row label{font-size:13px;color:var(--text2);font-weight:500}
 .form-row input,.form-row select{background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius-sm);color:var(--text);padding:10px 14px;font-size:15px;width:100%;transition:border .15s;appearance:none;-webkit-appearance:none}
 .form-row input:focus,.form-row select:focus{outline:none;border-color:var(--accent)}
 .form-row select option{background:var(--bg2)}
 .submit-btn{width:100%;padding:14px;background:var(--accent);color:#0c1a2e;border:none;border-radius:var(--radius);font-size:15px;font-weight:600;cursor:pointer;margin-top:4px}
-.submit-btn:active{opacity:.8}
+
+/* Person picker */
 .person-picker{background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius-sm);padding:10px;display:flex;flex-wrap:wrap;gap:8px;min-height:48px;cursor:text}
 .person-picker-chip{display:flex;align-items:center;gap:5px;background:var(--accent-dim);color:var(--accent);border-radius:20px;padding:4px 10px;font-size:13px}
-.person-picker-chip button{background:none;border:none;cursor:pointer;color:var(--accent);font-size:14px;line-height:1;padding:0 2px}
+.person-picker-chip button{background:none;border:none;cursor:pointer;color:var(--accent);font-size:14px;padding:0 2px}
 .person-picker select{background:transparent;border:none;color:var(--text2);font-size:13px;cursor:pointer;outline:none;padding:2px;flex:1;min-width:120px;appearance:none;-webkit-appearance:none}
-.person-picker select option{background:var(--bg2);color:var(--text)}
-.stickies{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:480px){.stickies{grid-template-columns:1fr}}
-.sticky{border-radius:var(--radius);padding:16px;min-height:220px;display:flex;flex-direction:column;gap:10px}
-.sticky-today{background:#1a2a1a;border:1px solid #2d5a2d}
-.sticky-tomorrow{background:#1a1f2e;border:1px solid #1e3a5f}
-.sticky-header{display:flex;align-items:center;justify-content:space-between}
-.sticky-label{font-size:13px;font-weight:600}
-.sticky-today .sticky-label{color:var(--green)}
-.sticky-tomorrow .sticky-label{color:var(--accent)}
-.sticky-date{font-size:11px;color:var(--text3)}
-.task-list{display:flex;flex-direction:column;gap:8px;flex:1}
-.task-item{display:flex;align-items:center;gap:8px}
-.task-check{width:18px;height:18px;accent-color:var(--green);cursor:pointer;flex-shrink:0}
-.task-text{font-size:14px;flex:1;cursor:pointer}
-.task-text.done{text-decoration:line-through;color:var(--text3)}
-.task-del{background:none;border:none;cursor:pointer;color:var(--text3);font-size:14px;padding:2px}
-.task-add{display:flex;gap:8px;margin-top:auto}
-.task-add input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:13px}
-.task-add input:focus{outline:none;border-color:var(--accent)}
-.task-add button{padding:8px 12px;border-radius:var(--radius-sm);border:none;cursor:pointer;font-size:14px;font-weight:600}
-.sticky-today .task-add button{background:var(--green);color:#0a1f0a}
-.sticky-tomorrow .task-add button{background:var(--accent);color:#0c1a2e}
+.person-picker select option{background:var(--bg2)}
+
+/* CALENDAR TASKS */
+.cal-wrap{background:var(--bg2);border-radius:var(--radius);border:1px solid var(--bg3);padding:16px;margin-bottom:12px}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.cal-nav{background:none;border:none;cursor:pointer;color:var(--text2);font-size:18px;padding:4px 8px;border-radius:var(--radius-sm)}
+.cal-nav:hover{background:var(--bg3);color:var(--text)}
+.cal-month{font-size:15px;font-weight:600;color:var(--text)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-day-name{font-size:11px;color:var(--text3);text-align:center;padding:4px 0;font-weight:500}
+.cal-day{min-height:36px;border-radius:var(--radius-sm);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;font-size:13px;color:var(--text2);transition:background .1s;padding:2px}
+.cal-day:hover{background:var(--bg3)}
+.cal-day.today{background:var(--accent-dim);color:var(--accent);font-weight:600}
+.cal-day.selected{background:var(--accent);color:#0c1a2e;font-weight:700}
+.cal-day.other-month{opacity:.3}
+.cal-day.has-tasks::after{content:'';position:absolute;bottom:3px;width:5px;height:5px;border-radius:50%;background:var(--amber)}
+.cal-day.selected.has-tasks::after{background:#0c1a2e}
+.cal-day.today.has-tasks::after{background:var(--accent)}
+.task-panel{background:var(--bg2);border-radius:var(--radius);border:1px solid var(--bg3);padding:16px}
+.task-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.task-panel-date{font-size:14px;font-weight:600;color:var(--text)}
+.task-list{display:flex;flex-direction:column;gap:8px}
+.task-item{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--bg3);border-radius:var(--radius-sm);cursor:pointer;transition:opacity .15s}
+.task-item:hover{opacity:.85}
+.task-check-icon{width:18px;height:18px;border-radius:50%;border:2px solid var(--text3);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.task-item.done .task-check-icon{background:var(--green);border-color:var(--green)}
+.task-item.done .task-check-icon::after{content:'✓';font-size:10px;color:#0a1f0a;font-weight:700}
+.task-item-text{font-size:14px;flex:1;transition:all .15s}
+.task-item.done .task-item-text{text-decoration:line-through;color:var(--text3)}
+.task-item-del{background:none;border:none;cursor:pointer;color:var(--text3);font-size:14px;padding:2px;opacity:0;transition:opacity .15s}
+.task-item:hover .task-item-del{opacity:1}
+.task-add-row{display:flex;gap:8px;margin-top:10px}
+.task-add-row input{flex:1;background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius-sm);color:var(--text);padding:9px 12px;font-size:14px}
+.task-add-row input:focus{outline:none;border-color:var(--accent)}
+.task-add-row button{padding:9px 16px;background:var(--accent);color:#0c1a2e;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer}
+.empty-tasks{text-align:center;padding:24px;color:var(--text3);font-size:13px}
+
+/* Stats */
 .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
 .stat{background:var(--bg2);border-radius:var(--radius-sm);padding:12px;text-align:center;border:1px solid var(--bg3)}
 .stat-num{font-size:22px;font-weight:600;color:var(--accent);line-height:1}
@@ -122,16 +140,19 @@ input,select,textarea,button{font-family:var(--font)}
 .sync-dot.syncing{background:var(--amber);animation:pulse 1s infinite}
 .sync-dot.error{background:var(--red)}
 .empty{text-align:center;padding:32px 20px;color:var(--text3);font-size:14px}
+
+/* People */
 .people-table{width:100%;border-collapse:collapse}
 .people-table th{font-size:12px;color:var(--text3);padding:6px 8px;text-align:right;border-bottom:1px solid var(--bg3)}
 .people-table td{font-size:14px;color:var(--text);padding:8px;border-bottom:1px solid var(--bg3);vertical-align:middle}
 .people-table tr:last-child td{border-bottom:none}
 .inline-edit{background:var(--bg3);border:1px solid var(--accent);border-radius:var(--radius-sm);color:var(--text);padding:5px 8px;font-size:13px;width:100%}
-.inline-edit:focus{outline:none}
 .add-row{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-top:12px}
 .add-row input{background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius-sm);color:var(--text);padding:9px 12px;font-size:14px}
 .add-row input:focus{outline:none;border-color:var(--accent)}
 .add-row button{padding:9px 16px;background:var(--accent);color:#0c1a2e;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
+
+/* Alarm */
 .alarm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px}
 .alarm-overlay.show{display:flex}
 .alarm-icon{font-size:54px;animation:shake .4s infinite}
@@ -139,15 +160,16 @@ input,select,textarea,button{font-family:var(--font)}
 .alarm-title{font-size:22px;font-weight:600;color:var(--amber);line-height:1.3}
 .alarm-sub{font-size:14px;color:var(--text2)}
 .alarm-persons{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px}
-.alarm-person-btn{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius-sm);padding:10px 16px;font-size:14px;color:var(--text);cursor:pointer;text-decoration:none;transition:background .15s}
+.alarm-person-btn{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius-sm);padding:10px 16px;font-size:14px;color:var(--text);text-decoration:none;transition:background .15s}
 .alarm-person-btn:hover{background:var(--bg3)}
 .wa-icon{color:#25d366;font-weight:700}
 .alarm-close{padding:14px 44px;background:var(--amber);color:#1a0a00;border:none;border-radius:var(--radius);font-size:16px;font-weight:700;cursor:pointer;margin-top:6px}
-/* user menu */
-.user-menu{position:fixed;top:60px;left:16px;background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius);padding:12px;z-index:1000;min-width:200px;display:none}
+
+/* User menu */
+.user-menu{position:fixed;top:60px;left:16px;background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius);padding:14px;z-index:1000;min-width:200px;display:none;box-shadow:0 4px 20px rgba(0,0,0,.4)}
 .user-menu.show{display:block}
-.user-name{font-size:14px;font-weight:500;margin-bottom:4px}
-.user-email{font-size:12px;color:var(--text3);margin-bottom:12px}
+.um-name{font-size:14px;font-weight:500;margin-bottom:3px}
+.um-email{font-size:12px;color:var(--text3);margin-bottom:12px}
 .logout-btn{width:100%;padding:9px;background:var(--red-dim);color:var(--red);border:1px solid var(--red-dim);border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer}
 </style>
 </head>
@@ -159,11 +181,11 @@ input,select,textarea,button{font-family:var(--font)}
     <div class="login-logo">📅</div>
     <div class="login-title">مساعد المدير</div>
     <div class="login-sub">سجّل دخولك بحساب جوجل لمزامنة مواعيدك ومهامك على جميع أجهزتك تلقائياً</div>
-    <button class="google-btn" onclick="signInWithGoogle()">
-      <svg class="google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+    <button class="google-btn" id="google-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
       تسجيل الدخول بجوجل
     </button>
-    <div class="login-note">بياناتك محفوظة بشكل آمن في حسابك الشخصي على جوجل فقط</div>
+    <div class="login-note">بياناتك محفوظة بأمان في حسابك الشخصي على جوجل</div>
   </div>
 </div>
 
@@ -180,27 +202,27 @@ input,select,textarea,button{font-family:var(--font)}
 
 <!-- USER MENU -->
 <div class="user-menu" id="user-menu">
-  <div class="user-name" id="um-name"></div>
-  <div class="user-email" id="um-email"></div>
-  <button class="logout-btn" onclick="signOut()">تسجيل الخروج</button>
+  <div class="um-name" id="um-name"></div>
+  <div class="um-email" id="um-email"></div>
+  <button class="logout-btn" id="logout-btn">تسجيل الخروج</button>
 </div>
 
-<!-- MAIN APP -->
+<!-- APP -->
 <div class="app" id="main-app">
   <div class="header">
     <div>
       <div class="header-clock" id="clock">--:--</div>
-      <div class="header-date" id="hdate">...</div>
+      <div class="header-date" id="hdate"></div>
     </div>
-    <div class="header-left">
+    <div class="header-right">
       <div class="next-badge" id="next-badge"></div>
-      <div class="user-initial" id="user-initial" onclick="toggleUserMenu()">؟</div>
+      <div class="user-initial" id="user-initial" onclick="toggleMenu()">م</div>
     </div>
   </div>
   <nav class="nav">
     <button class="nav-btn active" onclick="go('home')">الرئيسية</button>
     <button class="nav-btn" onclick="go('meetings')">مواعيد المدير</button>
-    <button class="nav-btn" onclick="go('tasks')">مهام اليوم</button>
+    <button class="nav-btn" onclick="go('tasks')">المهام</button>
     <button class="nav-btn" onclick="go('add')">إضافة موعد</button>
     <button class="nav-btn" onclick="go('people')">الأشخاص</button>
   </nav>
@@ -209,7 +231,7 @@ input,select,textarea,button{font-family:var(--font)}
   <div class="content active" id="sec-home">
     <div class="sync-bar">
       <span><span class="sync-dot" id="sync-dot"></span><span id="sync-label"> جاري المزامنة...</span></span>
-      <span id="sync-time" style="font-size:11px"></span>
+      <span id="sync-time" style="font-size:11px;color:var(--text3)"></span>
     </div>
     <div class="alert-bar" id="alert-bar"></div>
     <div class="summary">
@@ -218,7 +240,7 @@ input,select,textarea,button{font-family:var(--font)}
       <div class="stat"><div class="stat-num" id="s-tasks">0</div><div class="stat-label">مهام اليوم</div></div>
     </div>
     <div class="card"><div class="card-title">▸ أقرب موعد</div><div id="home-next"></div></div>
-    <div class="card"><div class="card-title">▸ مهام لم تنجز اليوم</div><div id="home-tasks"></div></div>
+    <div class="card"><div class="card-title">▸ مهام اليوم المعلقة</div><div id="home-tasks"></div></div>
   </div>
 
   <!-- MEETINGS -->
@@ -227,18 +249,25 @@ input,select,textarea,button{font-family:var(--font)}
     <div id="meetings-list"></div>
   </div>
 
-  <!-- TASKS -->
+  <!-- TASKS with CALENDAR -->
   <div class="content" id="sec-tasks">
-    <div class="stickies">
-      <div class="sticky sticky-today">
-        <div class="sticky-header"><span class="sticky-label">▸ مهام اليوم</span><span class="sticky-date" id="today-lbl"></span></div>
-        <div class="task-list" id="today-list"></div>
-        <div class="task-add"><input id="today-inp" type="text" placeholder="مهمة جديدة..."/><button onclick="addTask('today')">+</button></div>
+    <div class="cal-wrap">
+      <div class="cal-header">
+        <button class="cal-nav" onclick="calPrev()">&#8250;</button>
+        <div class="cal-month" id="cal-month"></div>
+        <button class="cal-nav" onclick="calNext()">&#8249;</button>
       </div>
-      <div class="sticky sticky-tomorrow">
-        <div class="sticky-header"><span class="sticky-label">▸ مهام الغد</span><span class="sticky-date" id="tom-lbl"></span></div>
-        <div class="task-list" id="tom-list"></div>
-        <div class="task-add"><input id="tom-inp" type="text" placeholder="مهمة الغد..."/><button onclick="addTask('tomorrow')">+</button></div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+    <div class="task-panel">
+      <div class="task-panel-header">
+        <div class="task-panel-date" id="task-panel-date"></div>
+      </div>
+      <div class="task-list" id="task-list"></div>
+      <div class="empty-tasks" id="task-empty" style="display:none">لا توجد مهام في هذا اليوم</div>
+      <div class="task-add-row">
+        <input type="text" id="task-inp" placeholder="أضف مهمة لهذا اليوم..."/>
+        <button onclick="addTaskCal()">إضافة</button>
       </div>
     </div>
   </div>
@@ -263,7 +292,7 @@ input,select,textarea,button{font-family:var(--font)}
         </select>
       </div>
       <div class="form-row">
-        <label>الأشخاص المعنيون (اختر أكثر من شخص)</label>
+        <label>الأشخاص المعنيون</label>
         <div class="person-picker" id="person-picker" onclick="focusPicker()">
           <select id="picker-select" onchange="pickPerson(this)"><option value="">+ أضف شخص...</option></select>
         </div>
@@ -285,200 +314,262 @@ input,select,textarea,button{font-family:var(--font)}
       </div>
     </div>
     <div style="font-size:12px;color:var(--text3);padding:4px 2px;line-height:1.7">
-      أدخل الرقم بصيغة دولية بدون + مثال: 966501234567<br/>
-      اضغط ✏️ للتعديل المباشر
+      الرقم بصيغة دولية بدون + مثال: 966501234567 — اضغط ✏️ للتعديل
     </div>
   </div>
 </div>
 
-<!-- Firebase -->
 <script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as fbSignOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-import { getFirestore, doc, setDoc, onSnapshot, getDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import{initializeApp}from'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import{getAuth,GoogleAuthProvider,signInWithPopup,signOut as fbOut,onAuthStateChanged}from'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+import{getFirestore,doc,setDoc,onSnapshot}from'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBUj2ZyjV8YVB78Ml1o_jydbTvU_keFv0o",
-  authDomain: "manager-scheduler-3272c.firebaseapp.com",
-  projectId: "manager-scheduler-3272c",
-  storageBucket: "manager-scheduler-3272c.firebasestorage.app",
-  messagingSenderId: "320863914874",
-  appId: "1:320863914874:web:66f7f4e9b5714edf2b64c3",
-  measurementId: "G-8RRHNSXQ2J"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const cfg={apiKey:"AIzaSyBUj2ZyjV8YVB78Ml1o_jydbTvU_keFv0o",authDomain:"manager-scheduler-3272c.firebaseapp.com",projectId:"manager-scheduler-3272c",storageBucket:"manager-scheduler-3272c.firebasestorage.app",messagingSenderId:"320863914874",appId:"1:320863914874:web:66f7f4e9b5714edf2b64c3"};
+const fbApp=initializeApp(cfg);
+const auth=getAuth(fbApp);
+const db=getFirestore(fbApp);
 
 const DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
-const MONTHS=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const MONTHS_AR=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
 
-let userData={meetings:[],tasks:{today:[],tomorrow:[]},people:[],notified:[]};
-let currentUser=null;
-let alarmInterval=null;
-let selectedPersons=[];
-let editingPerson=null;
-let unsubscribe=null;
+let D={meetings:[],tasks:{},people:[],notified:[]};
+let uid=null,unsub=null,alarmInt=null,selPersons=[],editingP=null;
+let calYear=new Date().getFullYear(),calMonth=new Date().getMonth();
+let selDate=toKey(new Date());
 
-window.signInWithGoogle=async()=>{
-  try{
-    const provider=new GoogleAuthProvider();
-    await signInWithPopup(auth,provider);
-  }catch(e){showToast('حدث خطأ في تسجيل الدخول');}
-};
+function toKey(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
+function fromKey(k){const[y,m,d]=k.split('-');return new Date(+y,+m-1,+d);}
 
-window.signOut=async()=>{
-  if(unsubscribe)unsubscribe();
-  await fbSignOut(auth);
-  document.getElementById('user-menu').classList.remove('show');
-  document.getElementById('main-app').style.display='none';
-  document.getElementById('login-screen').style.display='flex';
-};
-
-window.toggleUserMenu=()=>{
-  document.getElementById('user-menu').classList.toggle('show');
-};
-
-document.addEventListener('click',(e)=>{
-  const menu=document.getElementById('user-menu');
-  const btn=document.getElementById('user-initial');
-  if(!menu.contains(e.target)&&!btn.contains(e.target)) menu.classList.remove('show');
-});
-
-onAuthStateChanged(auth,user=>{
-  if(user){
-    currentUser=user;
-    document.getElementById('login-screen').style.display='none';
-    document.getElementById('main-app').style.display='flex';
-    const initial=user.displayName?user.displayName[0]:'م';
-    document.getElementById('user-initial').textContent=initial;
-    document.getElementById('um-name').textContent=user.displayName||'مستخدم';
-    document.getElementById('um-email').textContent=user.email||'';
-    startRealtimeSync(user.uid);
-    initUI();
-  } else {
-    currentUser=null;
-    document.getElementById('login-screen').style.display='flex';
-    document.getElementById('main-app').style.display='none';
-  }
-});
-
-function startRealtimeSync(uid){
-  if(unsubscribe)unsubscribe();
-  const docRef=doc(db,'users',uid);
-  unsubscribe=onSnapshot(docRef,(snap)=>{
-    if(snap.exists()){
-      const remote=snap.data();
-      userData=remote;
-      setSyncStatus('ok');
-      const cur=document.querySelector('.nav-btn.active');
-      if(cur){
-        const sec=['home','meetings','tasks','add','people'];
-        const idx=Array.from(document.querySelectorAll('.nav-btn')).indexOf(cur);
-        if(idx>=0&&sec[idx]!=='add') refreshCurrentView(sec[idx]);
-      }
-    } else {
-      saveToFirestore();
-    }
-  },(err)=>{setSyncStatus('error');});
-}
-
-async function saveToFirestore(){
-  if(!currentUser)return;
+/* ===== FIREBASE ===== */
+async function saveDB(){
+  if(!uid)return;
   setSyncStatus('syncing');
   try{
-    userData.updatedAt=Date.now();
-    await setDoc(doc(db,'users',currentUser.uid),userData);
+    D.ts=Date.now();
+    await setDoc(doc(db,'users',uid),JSON.parse(JSON.stringify(D)));
     setSyncStatus('ok');
-  }catch(e){setSyncStatus('error');}
+  }catch(e){setSyncStatus('error');console.error(e);}
 }
 
-function setSyncStatus(type){
+function startSync(){
+  if(unsub)unsub();
+  unsub=onSnapshot(doc(db,'users',uid),(snap)=>{
+    if(snap.exists()){
+      const r=snap.data();
+      if(!D.ts||r.ts>D.ts){
+        D=r;
+        if(!D.tasks)D.tasks={};
+        if(!D.meetings)D.meetings=[];
+        if(!D.people)D.people=[];
+        if(!D.notified)D.notified=[];
+        setSyncStatus('ok');
+        refreshView();
+      }
+    } else {saveDB();}
+  },e=>{setSyncStatus('error');});
+}
+
+function setSyncStatus(t){
   const dot=document.getElementById('sync-dot');
   const lbl=document.getElementById('sync-label');
   const tim=document.getElementById('sync-time');
   if(!dot)return;
-  const map={ok:['','مزامنة تلقائية'],syncing:['syncing','جاري الحفظ...'],error:['error','خطأ في الاتصال']};
-  const [cls,msg]=map[type]||['',''];
-  dot.className='sync-dot'+(cls?' '+cls:'');
-  lbl.textContent=' '+msg;
-  if(type==='ok'&&tim) tim.textContent=new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});
+  dot.className='sync-dot'+(t==='syncing'?' syncing':t==='error'?' error':'');
+  lbl.textContent=t==='ok'?' مزامنة تلقائية':t==='syncing'?' جاري الحفظ...':' خطأ في الاتصال';
+  if(t==='ok'&&tim)tim.textContent=new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});
 }
 
-function refreshCurrentView(sec){
-  if(sec==='home')renderHome();
-  if(sec==='meetings')renderMeetings();
-  if(sec==='tasks')renderTasks();
-  if(sec==='people')renderPeople();
-}
+/* ===== AUTH ===== */
+document.getElementById('google-btn').onclick=async()=>{
+  try{await signInWithPopup(auth,new GoogleAuthProvider());}catch(e){showToast('خطأ في تسجيل الدخول');}
+};
+document.getElementById('logout-btn').onclick=async()=>{
+  if(unsub)unsub();
+  await fbOut(auth);
+  document.getElementById('user-menu').classList.remove('show');
+};
 
-function initUI(){
-  migrateTasks();
-  renderHome();
-  tick();
-  setInterval(tick,1000);
-  requestNotif();
-  if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
-  const fd=document.getElementById('f-date');
-  const ft=document.getElementById('f-time');
-  if(fd)fd.valueAsDate=new Date();
-  if(ft){const n=new Date();ft.value=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
-  document.getElementById('today-inp').addEventListener('keydown',e=>{if(e.key==='Enter')addTask('today')});
-  document.getElementById('tom-inp').addEventListener('keydown',e=>{if(e.key==='Enter')addTask('tomorrow')});
-  document.getElementById('p-name').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('p-phone').focus()});
-  document.getElementById('p-phone').addEventListener('keydown',e=>{if(e.key==='Enter')addPerson()});
-}
+onAuthStateChanged(auth,user=>{
+  if(user){
+    uid=user.uid;
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('main-app').classList.add('show');
+    document.getElementById('user-initial').textContent=(user.displayName||'م')[0];
+    document.getElementById('um-name').textContent=user.displayName||'';
+    document.getElementById('um-email').textContent=user.email||'';
+    startSync();
+    initUI();
+  } else {
+    uid=null;
+    document.getElementById('login-screen').style.display='flex';
+    document.getElementById('main-app').classList.remove('show');
+  }
+});
 
+window.toggleMenu=()=>document.getElementById('user-menu').classList.toggle('show');
+document.addEventListener('click',e=>{
+  const m=document.getElementById('user-menu');
+  const b=document.getElementById('user-initial');
+  if(m&&!m.contains(e.target)&&!b.contains(e.target))m.classList.remove('show');
+});
+
+/* ===== NAV ===== */
 window.go=function(sec){
   document.querySelectorAll('.content').forEach(e=>e.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(e=>e.classList.remove('active'));
   document.getElementById('sec-'+sec).classList.add('active');
   const idx={home:0,meetings:1,tasks:2,add:3,people:4}[sec];
   document.querySelectorAll('.nav-btn')[idx].classList.add('active');
-  refreshCurrentView(sec);
-  if(sec==='add'){selectedPersons=[];renderPicker();}
+  if(sec==='home')renderHome();
+  if(sec==='meetings')renderMeetings();
+  if(sec==='tasks')renderCal();
+  if(sec==='add'){selPersons=[];renderPicker();}
+  if(sec==='people')renderPeople();
 };
 
-function fmtDate(dt){return `${DAYS[dt.getDay()]}، ${dt.getDate()} ${MONTHS[dt.getMonth()]}`}
-function fmtTime(dt){return dt.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'})}
+function refreshView(){
+  const a=document.querySelector('.nav-btn.active');
+  if(!a)return;
+  const secs=['home','meetings','tasks','add','people'];
+  const i=Array.from(document.querySelectorAll('.nav-btn')).indexOf(a);
+  if(i>=0&&secs[i]!=='add')go(secs[i]);
+}
 
-/* PICKER */
-window.renderPicker=function(){
-  const picker=document.getElementById('person-picker');
-  const sel=document.getElementById('picker-select');
-  sel.innerHTML='<option value="">+ أضف شخص...</option>';
-  (userData.people||[]).filter(p=>!selectedPersons.includes(p.name)).forEach(p=>{
-    const o=document.createElement('option');o.value=p.name;o.textContent=p.name;sel.appendChild(o);
-  });
-  const chips=selectedPersons.map(n=>`<div class="person-picker-chip">${n}<button onclick="removePickedPerson('${n}')">✕</button></div>`).join('');
-  picker.innerHTML=chips;picker.appendChild(sel);
+function fmtDate(dt){return `${DAYS[dt.getDay()]}، ${dt.getDate()} ${MONTHS_AR[dt.getMonth()]}`;}
+function fmtTime(dt){return dt.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});}
+
+/* ===== CALENDAR ===== */
+window.calPrev=()=>{calMonth--;if(calMonth<0){calMonth=11;calYear--;}renderCal();};
+window.calNext=()=>{calMonth++;if(calMonth>11){calMonth=0;calYear++;}renderCal();};
+
+function renderCal(){
+  const todayKey=toKey(new Date());
+  document.getElementById('cal-month').textContent=`${MONTHS_AR[calMonth]} ${calYear}`;
+  const grid=document.getElementById('cal-grid');
+  const dayNames=['ح','ن','ث','ر','خ','ج','س'];
+  let html=dayNames.map(d=>`<div class="cal-day-name">${d}</div>`).join('');
+  const first=new Date(calYear,calMonth,1);
+  const startDay=first.getDay();
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  const prevDays=new Date(calYear,calMonth,0).getDate();
+  for(let i=startDay-1;i>=0;i--){
+    html+=`<div class="cal-day other-month">${prevDays-i}</div>`;
+  }
+  for(let d=1;d<=daysInMonth;d++){
+    const key=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const tasks=D.tasks[key]||[];
+    const hasTasks=tasks.length>0;
+    const isToday=key===todayKey;
+    const isSel=key===selDate;
+    let cls='cal-day';
+    if(isToday&&!isSel)cls+=' today';
+    if(isSel)cls+=' selected';
+    if(hasTasks)cls+=' has-tasks';
+    html+=`<div class="${cls}" onclick="selectDay('${key}')">${d}</div>`;
+  }
+  const remaining=(7-(startDay+daysInMonth)%7)%7;
+  for(let i=1;i<=remaining;i++) html+=`<div class="cal-day other-month">${i}</div>`;
+  grid.innerHTML=html;
+  renderTaskPanel();
+}
+
+window.selectDay=function(key){
+  selDate=key;
+  const d=fromKey(key);
+  if(d.getFullYear()!==calYear||d.getMonth()!==calMonth){
+    calYear=d.getFullYear();calMonth=d.getMonth();
+  }
+  renderCal();
 };
-window.pickPerson=function(sel){if(!sel.value)return;selectedPersons.push(sel.value);renderPicker();};
-window.removePickedPerson=function(name){selectedPersons=selectedPersons.filter(n=>n!==name);renderPicker();};
-window.focusPicker=function(){document.getElementById('picker-select').focus();};
 
-/* MEETINGS */
+function renderTaskPanel(){
+  const d=fromKey(selDate);
+  const todayKey=toKey(new Date());
+  const isToday=selDate===todayKey;
+  document.getElementById('task-panel-date').textContent=
+    isToday?`اليوم — ${fmtDate(d)}`:fmtDate(d);
+  const tasks=D.tasks[selDate]||[];
+  const list=document.getElementById('task-list');
+  const empty=document.getElementById('task-empty');
+  if(!tasks.length){
+    list.innerHTML='';
+    empty.style.display='block';
+  } else {
+    empty.style.display='none';
+    list.innerHTML=tasks.map((t,i)=>`
+      <div class="task-item ${t.done?'done':''}" onclick="toggleTaskCal(${i})">
+        <div class="task-check-icon"></div>
+        <div class="task-item-text">${t.text}</div>
+        <button class="task-item-del" onclick="event.stopPropagation();delTaskCal(${i})">✕</button>
+      </div>`).join('');
+  }
+}
+
+window.addTaskCal=async function(){
+  const inp=document.getElementById('task-inp');
+  const v=inp.value.trim();if(!v)return;
+  if(!D.tasks[selDate])D.tasks[selDate]=[];
+  D.tasks[selDate].push({id:Date.now(),text:v,done:false});
+  inp.value='';
+  await saveDB();
+  renderCal();
+};
+
+window.toggleTaskCal=async function(i){
+  if(!D.tasks[selDate])return;
+  D.tasks[selDate][i].done=!D.tasks[selDate][i].done;
+  await saveDB();
+  renderTaskPanel();
+};
+
+window.delTaskCal=async function(i){
+  if(!D.tasks[selDate])return;
+  D.tasks[selDate].splice(i,1);
+  await saveDB();
+  renderCal();
+};
+
+/* ===== HOME ===== */
+function renderHome(){
+  const now=new Date(),ts=toKey(now);
+  const tm=D.meetings.filter(m=>m.date===ts);
+  const up=D.meetings.filter(m=>new Date(m.date+'T'+m.time)>now);
+  const todayTasks=D.tasks[ts]||[];
+  const pend=todayTasks.filter(t=>!t.done);
+  document.getElementById('s-today').textContent=tm.length;
+  document.getElementById('s-upcoming').textContent=up.length;
+  document.getElementById('s-tasks').textContent=pend.length;
+  const nx=document.getElementById('home-next');
+  if(up.length){
+    const m=up[0];const mt=new Date(m.date+'T'+m.time);
+    const d=Math.round((mt-now)/60000);
+    nx.innerHTML=renderMeetingItem(m,now)+`<div style="margin-top:8px;font-size:13px;color:var(--text2)">بعد ${d<60?d+' دقيقة':Math.round(d/60)+' ساعة'}</div>`;
+  } else nx.innerHTML='<div class="empty" style="padding:16px 0">لا توجد مواعيد قادمة</div>';
+  const ht=document.getElementById('home-tasks');
+  ht.innerHTML=pend.length?pend.map(t=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--bg3)"><span style="color:var(--green)">○</span><span style="font-size:14px">${t.text}</span></div>`).join(''):'<div class="empty" style="padding:16px 0">أنجزت كل مهام اليوم!</div>';
+}
+
+/* ===== MEETINGS ===== */
 function renderMeetingItem(m,now){
-  const mt=new Date(m.date+'T'+m.time);
-  const diff=(mt-now)/60000;
+  const mt=new Date(m.date+'T'+m.time),diff=(mt-now)/60000;
   let badge='',dot='';
   if(diff<-5){badge='<span class="badge badge-past">انتهى</span>';dot='past';}
   else if(diff<0){badge='<span class="badge badge-now">الآن</span>';dot='soon';}
   else if(diff<=30){badge='<span class="badge badge-soon">قريباً</span>';dot='soon';}
   else badge='<span class="badge badge-ok">قادم</span>';
-  const pHtml=(m.persons||[]).length?`<div class="persons-row">${(m.persons).map(n=>`<span class="person-tag">👤 ${n}</span>`).join('')}</div>`:'';
-  return `<div class="meeting"><div class="meeting-dot ${dot}"></div><div class="meeting-body"><div class="meeting-title">${m.title}</div><div class="meeting-meta">${fmtDate(mt)} · ${fmtTime(mt)} · تذكير قبل ${m.remind} دقيقة</div>${pHtml}${m.note?`<div class="meeting-note">${m.note}</div>`:''}</div><div class="meeting-actions">${badge}<button class="del-btn" onclick="delMeeting(${m.id})">✕</button></div></div>`;
+  const pH=(m.persons||[]).length?`<div class="persons-row">${m.persons.map(n=>`<span class="person-tag">👤 ${n}</span>`).join('')}</div>`:'';
+  return `<div class="meeting"><div class="meeting-dot ${dot}"></div><div class="meeting-body"><div class="meeting-title">${m.title}</div><div class="meeting-meta">${fmtDate(mt)} · ${fmtTime(mt)} · تذكير قبل ${m.remind} دقيقة</div>${pH}${m.note?`<div class="meeting-note">${m.note}</div>`:''}</div><div class="meeting-actions">${badge}<button class="del-btn" onclick="delMeeting(${m.id})">✕</button></div></div>`;
 }
 
-window.renderMeetings=function(){
-  const now=new Date(),ts=now.toISOString().split('T')[0];
+function renderMeetings(){
+  const now=new Date(),ts=toKey(now);
   const list=document.getElementById('meetings-list');
-  if(!userData.meetings.length){list.innerHTML='<div class="empty">لا توجد مواعيد مسجلة</div>';return;}
-  const up=userData.meetings.filter(m=>m.date>=ts);
-  const past=userData.meetings.filter(m=>m.date<ts);
-  list.innerHTML=(up.length?`<div class="card"><div class="card-title">المواعيد القادمة (${up.length})</div>${up.map(m=>renderMeetingItem(m,now)).join('')}</div>`:'')+(past.length?`<div class="card"><div class="card-title">المواعيد السابقة</div>${past.map(m=>renderMeetingItem(m,now)).join('')}</div>`:'');
-};
+  if(!D.meetings.length){list.innerHTML='<div class="empty">لا توجد مواعيد مسجلة</div>';return;}
+  const up=D.meetings.filter(m=>m.date>=ts);
+  const past=D.meetings.filter(m=>m.date<ts);
+  list.innerHTML=(up.length?`<div class="card"><div class="card-title">المواعيد القادمة (${up.length})</div>${up.map(m=>renderMeetingItem(m,now)).join('')}</div>`:'')+
+    (past.length?`<div class="card"><div class="card-title">المواعيد السابقة</div>${past.map(m=>renderMeetingItem(m,now)).join('')}</div>`:'');
+}
 
 window.saveMeeting=async function(){
   const title=document.getElementById('f-title').value.trim();
@@ -487,93 +578,72 @@ window.saveMeeting=async function(){
   const remind=parseInt(document.getElementById('f-remind').value);
   const note=document.getElementById('f-note').value.trim();
   if(!title||!date||!time){showToast('يرجى تعبئة العنوان والتاريخ والوقت');return;}
-  userData.meetings.push({id:Date.now(),title,date,time,remind,persons:[...selectedPersons],note});
-  userData.meetings.sort((a,b)=>new Date(a.date+'T'+a.time)-new Date(b.date+'T'+b.time));
+  D.meetings.push({id:Date.now(),title,date,time,remind,persons:[...selPersons],note});
+  D.meetings.sort((a,b)=>new Date(a.date+'T'+a.time)-new Date(b.date+'T'+b.time));
   document.getElementById('f-title').value='';document.getElementById('f-note').value='';
-  selectedPersons=[];
-  await saveToFirestore();
-  showToast('تم حفظ الموعد ✓');
-  requestNotif();
+  selPersons=[];
+  await saveDB();showToast('تم حفظ الموعد ✓');requestNotif();
   setTimeout(()=>go('meetings'),800);
 };
 
-window.delMeeting=async function(id){userData.meetings=userData.meetings.filter(m=>m.id!==id);await saveToFirestore();renderMeetings();};
+window.delMeeting=async function(id){D.meetings=D.meetings.filter(m=>m.id!==id);await saveDB();renderMeetings();};
 
-/* TASKS */
-window.renderHome=function(){
-  const now=new Date(),ts=now.toISOString().split('T')[0];
-  const tm=userData.meetings.filter(m=>m.date===ts);
-  const up=userData.meetings.filter(m=>new Date(m.date+'T'+m.time)>now);
-  const pend=(userData.tasks.today||[]).filter(t=>!t.done);
-  document.getElementById('s-today').textContent=tm.length;
-  document.getElementById('s-upcoming').textContent=up.length;
-  document.getElementById('s-tasks').textContent=pend.length;
-  const nx=document.getElementById('home-next');
-  if(up.length){const m=up[0];const mt=new Date(m.date+'T'+m.time);const d=Math.round((mt-now)/60000);nx.innerHTML=renderMeetingItem(m,now)+`<div style="margin-top:8px;font-size:13px;color:var(--text2)">بعد ${d<60?d+' دقيقة':Math.round(d/60)+' ساعة'}</div>`;}
-  else nx.innerHTML='<div class="empty" style="padding:16px 0">لا توجد مواعيد قادمة</div>';
-  const ht=document.getElementById('home-tasks');
-  ht.innerHTML=pend.length?pend.map(t=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--bg3)"><span style="color:var(--green)">○</span><span style="font-size:14px">${t.text}</span></div>`).join(''):'<div class="empty" style="padding:16px 0">أنجزت كل المهام!</div>';
-};
-
-window.renderTasks=function(){
-  const now=new Date(),tom=new Date(now);tom.setDate(tom.getDate()+1);
-  document.getElementById('today-lbl').textContent=`${now.getDate()} ${MONTHS[now.getMonth()]}`;
-  document.getElementById('tom-lbl').textContent=`${tom.getDate()} ${MONTHS[tom.getMonth()]}`;
-  ['today','tomorrow'].forEach(w=>{
-    const el=document.getElementById(w==='today'?'today-list':'tom-list');
-    const tasks=userData.tasks[w]||[];
-    if(!tasks.length){el.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">لا توجد مهام بعد</div>';return;}
-    el.innerHTML=tasks.map(t=>`<div class="task-item"><input type="checkbox" class="task-check" ${t.done?'checked':''} onchange="toggleTask('${w}',${t.id})"/><span class="task-text ${t.done?'done':''}" onclick="toggleTask('${w}',${t.id})">${t.text}</span><button class="task-del" onclick="delTask('${w}',${t.id})">✕</button></div>`).join('');
+/* ===== PICKER ===== */
+window.renderPicker=function(){
+  const picker=document.getElementById('person-picker');
+  const sel=document.getElementById('picker-select');
+  sel.innerHTML='<option value="">+ أضف شخص...</option>';
+  (D.people||[]).filter(p=>!selPersons.includes(p.name)).forEach(p=>{
+    const o=document.createElement('option');o.value=p.name;o.textContent=p.name;sel.appendChild(o);
   });
+  picker.innerHTML=selPersons.map(n=>`<div class="person-picker-chip">${n}<button onclick="removePickedPerson('${n}')">✕</button></div>`).join('');
+  picker.appendChild(sel);
 };
+window.pickPerson=function(sel){if(!sel.value)return;selPersons.push(sel.value);renderPicker();};
+window.removePickedPerson=function(name){selPersons=selPersons.filter(n=>n!==name);renderPicker();};
+window.focusPicker=function(){document.getElementById('picker-select').focus();};
 
-window.addTask=async function(w){const inp=document.getElementById(w==='today'?'today-inp':'tom-inp');const v=inp.value.trim();if(!v)return;if(!userData.tasks[w])userData.tasks[w]=[];userData.tasks[w].push({id:Date.now(),text:v,done:false});await saveToFirestore();renderTasks();inp.value='';inp.focus();};
-window.toggleTask=async function(w,id){const t=(userData.tasks[w]||[]).find(t=>t.id===id);if(t){t.done=!t.done;await saveToFirestore();renderTasks();}};
-window.delTask=async function(w,id){userData.tasks[w]=(userData.tasks[w]||[]).filter(t=>t.id!==id);await saveToFirestore();renderTasks();};
-
-/* PEOPLE */
+/* ===== PEOPLE ===== */
 window.renderPeople=function(){
   const wrap=document.getElementById('people-table-wrap');
-  if(!userData.people||!userData.people.length){wrap.innerHTML='<div class="empty" style="padding:16px 0">لا يوجد أشخاص بعد</div>';return;}
-  wrap.innerHTML=`<table class="people-table"><thead><tr><th>الاسم</th><th>رقم الجوال</th><th></th></tr></thead><tbody>`+userData.people.map((p,i)=>{
-    if(editingPerson===i){
-      return `<tr><td><input class="inline-edit" id="ep-name" value="${p.name}" onkeydown="if(event.key==='Enter')savePerson(${i})"/></td><td><input class="inline-edit" id="ep-phone" value="${p.phone||''}" style="direction:ltr" onkeydown="if(event.key==='Enter')savePerson(${i})"/></td><td style="white-space:nowrap"><button class="edit-btn" onclick="savePerson(${i})">✓</button> <button class="del-btn" onclick="cancelEdit()">✕</button></td></tr>`;
-    }
-    return `<tr><td>${p.name}</td><td style="direction:ltr;text-align:left;font-size:13px">${p.phone||'—'}</td><td style="white-space:nowrap"><button class="edit-btn" onclick="startEdit(${i})">✏️</button> <button class="del-btn" onclick="delPersonEntry(${i})">✕</button></td></tr>`;
-  }).join('')+`</tbody></table>`;
-  if(editingPerson!==null)setTimeout(()=>{const el=document.getElementById('ep-name');if(el)el.focus();},50);
+  if(!D.people||!D.people.length){wrap.innerHTML='<div class="empty" style="padding:16px 0">لا يوجد أشخاص بعد</div>';return;}
+  wrap.innerHTML=`<table class="people-table"><thead><tr><th>الاسم</th><th>رقم الجوال</th><th></th></tr></thead><tbody>`+
+    D.people.map((p,i)=>{
+      if(editingP===i)return `<tr><td><input class="inline-edit" id="ep-n" value="${p.name}" onkeydown="if(event.key==='Enter')savePerson(${i})"/></td><td><input class="inline-edit" id="ep-p" value="${p.phone||''}" style="direction:ltr" onkeydown="if(event.key==='Enter')savePerson(${i})"/></td><td style="white-space:nowrap"><button class="edit-btn" onclick="savePerson(${i})">✓</button> <button class="del-btn" onclick="cancelEdit()">✕</button></td></tr>`;
+      return `<tr><td>${p.name}</td><td style="direction:ltr;text-align:left;font-size:13px">${p.phone||'—'}</td><td style="white-space:nowrap"><button class="edit-btn" onclick="startEdit(${i})">✏️</button> <button class="del-btn" onclick="delP(${i})">✕</button></td></tr>`;
+    }).join('')+`</tbody></table>`;
+  if(editingP!==null)setTimeout(()=>{const e=document.getElementById('ep-n');if(e)e.focus();},50);
 };
-
-window.startEdit=function(i){editingPerson=i;renderPeople();};
-window.cancelEdit=function(){editingPerson=null;renderPeople();};
+window.startEdit=i=>{editingP=i;renderPeople();};
+window.cancelEdit=()=>{editingP=null;renderPeople();};
 window.savePerson=async function(i){
-  const name=document.getElementById('ep-name').value.trim();
-  const phone=document.getElementById('ep-phone').value.trim().replace(/\D/g,'');
-  if(!name){showToast('الاسم مطلوب');return;}
-  userData.people[i]={name,phone};editingPerson=null;
-  await saveToFirestore();renderPeople();
+  const n=document.getElementById('ep-n').value.trim();
+  const p=document.getElementById('ep-p').value.trim().replace(/\D/g,'');
+  if(!n){showToast('الاسم مطلوب');return;}
+  D.people[i]={name:n,phone:p};editingP=null;
+  await saveDB();renderPeople();
 };
 window.addPerson=async function(){
-  const name=document.getElementById('p-name').value.trim();
-  const phone=document.getElementById('p-phone').value.trim().replace(/\D/g,'');
-  if(!name){showToast('أدخل الاسم');return;}
-  if(!userData.people)userData.people=[];
-  if(userData.people.find(p=>p.name===name)){showToast('الاسم موجود مسبقاً');return;}
-  userData.people.push({name,phone});
-  await saveToFirestore();renderPeople();
+  const n=document.getElementById('p-name').value.trim();
+  const p=document.getElementById('p-phone').value.trim().replace(/\D/g,'');
+  if(!n){showToast('أدخل الاسم');return;}
+  if(!D.people)D.people=[];
+  if(D.people.find(x=>x.name===n)){showToast('الاسم موجود مسبقاً');return;}
+  D.people.push({name:n,phone:p});
+  await saveDB();renderPeople();
   document.getElementById('p-name').value='';document.getElementById('p-phone').value='';
 };
-window.delPersonEntry=async function(i){userData.people.splice(i,1);await saveToFirestore();renderPeople();};
+window.delP=async function(i){D.people.splice(i,1);await saveDB();renderPeople();};
 
-/* ALARM */
-function startBeep(){
+/* ===== ALARM ===== */
+function beepStart(){
   stopBeep();
   function beep(){try{const c=new(window.AudioContext||window.webkitAudioContext)();[[880,0],[1100,.25],[880,.5],[1100,.75]].forEach(([f,d])=>{const o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=f;g.gain.value=0.3;o.start(c.currentTime+d);o.stop(c.currentTime+d+0.18);});}catch(e){}}
-  beep();alarmInterval=setInterval(beep,3500);
+  beep();alarmInt=setInterval(beep,3500);
 }
-function stopBeep(){if(alarmInterval){clearInterval(alarmInterval);alarmInterval=null;}}
+function stopBeep(){if(alarmInt){clearInterval(alarmInt);alarmInt=null;}}
 
-window.showAlarm=function(m,diff){
+function showAlarm(m,diff){
   document.getElementById('alarm-title').textContent=m.title;
   document.getElementById('alarm-sub').textContent=`الموعد بعد ${Math.round(diff)} دقيقة — ${fmtTime(new Date(m.date+'T'+m.time))}`;
   document.getElementById('alarm-note').textContent=m.note||'';
@@ -583,45 +653,41 @@ window.showAlarm=function(m,diff){
     const mt=new Date(m.date+'T'+m.time);
     const msg=encodeURIComponent(`تذكير: لديك موعد "${m.title}" في تمام ${fmtTime(mt)} - ${fmtDate(mt)}`);
     pd.innerHTML=persons.map(name=>{
-      const p=(userData.people||[]).find(x=>x.name===name);
-      const phone=p&&p.phone?p.phone:'';
+      const per=(D.people||[]).find(x=>x.name===name);
+      const phone=per&&per.phone?per.phone:'';
       const url=phone?`https://wa.me/${phone}?text=${msg}`:`https://wa.me/?text=${msg}`;
       return `<a class="alarm-person-btn" href="${url}" target="_blank"><span class="wa-icon">●</span> ${name}</a>`;
     }).join('');
-  } else {
-    pd.innerHTML='<div style="font-size:13px;color:var(--text3)">لا يوجد أشخاص معنيون</div>';
-  }
+  } else pd.innerHTML='<div style="font-size:13px;color:var(--text3)">لا يوجد أشخاص معنيون</div>';
   document.getElementById('alarm-overlay').classList.add('show');
-  startBeep();
+  beepStart();
   if(Notification.permission==='granted') new Notification('تذكير موعد',{body:`${m.title} · بعد ${Math.round(diff)} دقيقة`,requireInteraction:true});
-};
-
-window.closeAlarm=function(){document.getElementById('alarm-overlay').classList.remove('show');stopBeep();};
+}
+window.closeAlarm=()=>{document.getElementById('alarm-overlay').classList.remove('show');stopBeep();};
 
 function checkReminders(){
-  if(!userData.meetings||!currentUser)return;
+  if(!D.meetings||!uid)return;
   const now=new Date();let alertMsg='';
-  userData.meetings.forEach(m=>{
-    const mt=new Date(m.date+'T'+m.time);const diff=(mt-now)/60000;
+  D.meetings.forEach(m=>{
+    const mt=new Date(m.date+'T'+m.time),diff=(mt-now)/60000;
     const key=`${m.id}_${m.remind}`;
-    if(diff>0&&diff<=m.remind&&!(userData.notified||[]).includes(key)){
-      if(!userData.notified)userData.notified=[];
-      userData.notified.push(key);
-      saveToFirestore();
-      showAlarm(m,diff);
+    if(diff>0&&diff<=m.remind&&!(D.notified||[]).includes(key)){
+      if(!D.notified)D.notified=[];
+      D.notified.push(key);saveDB();showAlarm(m,diff);
     }
-    if(diff>0&&diff<=30&&!alertMsg) alertMsg=`⏰ "${m.title}" بعد ${Math.round(diff)} دقيقة`;
+    if(diff>0&&diff<=30&&!alertMsg)alertMsg=`⏰ "${m.title}" بعد ${Math.round(diff)} دقيقة`;
   });
   ['alert-bar','alert-bar2'].forEach(id=>{const el=document.getElementById(id);if(el){el.style.display=alertMsg?'block':'none';if(alertMsg)el.textContent=alertMsg;}});
   const nb=document.getElementById('next-badge');if(nb){nb.style.display=alertMsg?'block':'none';if(alertMsg)nb.textContent=alertMsg;}
 }
 
 function showToast(msg){
-  let t=document.getElementById('_toast');
-  if(!t){t=document.createElement('div');t.id='_toast';t.style.cssText='position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-100px);background:var(--amber);color:#1a0a00;border-radius:var(--radius);padding:12px 20px;font-size:14px;font-weight:600;z-index:8888;transition:transform .3s cubic-bezier(.34,1.56,.64,1);max-width:320px;text-align:center;pointer-events:none';document.body.appendChild(t);}
+  let t=document.getElementById('_t');
+  if(!t){t=document.createElement('div');t.id='_t';t.style.cssText='position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-100px);background:var(--amber);color:#1a0a00;border-radius:var(--radius);padding:12px 20px;font-size:14px;font-weight:600;z-index:8888;transition:transform .3s cubic-bezier(.34,1.56,.64,1);max-width:320px;text-align:center;pointer-events:none';document.body.appendChild(t);}
   t.textContent=msg;t.style.transform='translateX(-50%) translateY(0)';
   setTimeout(()=>t.style.transform='translateX(-50%) translateY(-100px)',2500);
 }
+window.showToast=showToast;
 
 function requestNotif(){if('Notification'in window&&Notification.permission==='default')Notification.requestPermission();}
 
@@ -629,18 +695,27 @@ function tick(){
   const now=new Date();
   const cl=document.getElementById('clock');const hd=document.getElementById('hdate');
   if(cl)cl.textContent=now.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  if(hd)hd.textContent=`${DAYS[now.getDay()]}، ${now.getDate()} ${MONTHS[now.getMonth()]} ${now.getFullYear()}`;
+  if(hd)hd.textContent=`${DAYS[now.getDay()]}، ${now.getDate()} ${MONTHS_AR[now.getMonth()]} ${now.getFullYear()}`;
   checkReminders();
 }
 
-function migrateTasks(){
-  const today=new Date().toISOString().split('T')[0];
-  const last=localStorage.getItem('m_last_day')||'';
-  if(last&&last!==today){userData.tasks.today=userData.tasks.tomorrow||[];userData.tasks.tomorrow=[];saveToFirestore();}
-  localStorage.setItem('m_last_day',today);
+function initUI(){
+  selDate=toKey(new Date());
+  calYear=new Date().getFullYear();
+  calMonth=new Date().getMonth();
+  renderHome();
+  tick();
+  setInterval(tick,1000);
+  requestNotif();
+  if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
+  const fd=document.getElementById('f-date');
+  const ft=document.getElementById('f-time');
+  if(fd)fd.valueAsDate=new Date();
+  if(ft){const n=new Date();ft.value=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
+  document.getElementById('task-inp').addEventListener('keydown',e=>{if(e.key==='Enter')addTaskCal();});
+  document.getElementById('p-name').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('p-phone').focus();});
+  document.getElementById('p-phone').addEventListener('keydown',e=>{if(e.key==='Enter')addPerson();});
 }
-
-window.showToast=showToast;
 </script>
 </body>
 </html>
