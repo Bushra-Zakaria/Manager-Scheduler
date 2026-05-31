@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<meta name="theme-color" content="#0f172a"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="مساعد المدير"/>
+<title>مساعد المدير</title>
+<link rel="manifest" href="manifest.json"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0f172a;--bg2:#1e293b;--bg3:#334155;--bg4:#475569;
+  --accent:#38bdf8;--accent2:#0ea5e9;--accent-dim:#0c4a6e;
+  --green:#4ade80;--green-dim:#14532d;
+  --amber:#fbbf24;--amber-dim:#78350f;
+  --red:#f87171;--red-dim:#7f1d1d;
+  --text:#f1f5f9;--text2:#94a3b8;--text3:#64748b;
+  --border:#1e293b;--radius:14px;--radius-sm:8px;
+  --font:'IBM Plex Sans Arabic',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden}
+input,select,textarea,button{font-family:var(--font)}
+
+/* Layout */
+.app{display:flex;flex-direction:column;min-height:100dvh;max-width:900px;margin:0 auto}
+.header{padding:16px 20px 12px;border-bottom:1px solid var(--bg2);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.header-left{display:flex;flex-direction:column;gap:2px}
+.header-clock{font-size:28px;font-weight:600;letter-spacing:-1px;color:var(--text);line-height:1}
+.header-date{font-size:13px;color:var(--text2)}
+.next-badge{background:var(--accent-dim);color:var(--accent);border-radius:var(--radius-sm);padding:6px 10px;font-size:12px;font-weight:500;text-align:center;max-width:200px;line-height:1.4}
+
+/* Nav */
+.nav{display:flex;gap:4px;padding:12px 16px;border-bottom:1px solid var(--bg2);background:var(--bg);overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-btn{padding:8px 16px;border-radius:var(--radius-sm);border:none;cursor:pointer;font-size:13px;font-weight:500;white-space:nowrap;transition:background .15s,color .15s;background:transparent;color:var(--text2)}
+.nav-btn.active{background:var(--accent);color:#0c1a2e;font-weight:600}
+.nav-btn:hover:not(.active){background:var(--bg2);color:var(--text)}
+
+/* Content */
+.content{flex:1;padding:16px;display:none}
+.content.active{display:block}
+
+/* Cards */
+.card{background:var(--bg2);border-radius:var(--radius);padding:16px;margin-bottom:12px;border:1px solid var(--bg3)}
+.card-title{font-size:14px;font-weight:600;color:var(--text2);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+
+/* Meeting items */
+.meeting{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--bg3)}
+.meeting:last-child{border-bottom:none;padding-bottom:0}
+.meeting-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);margin-top:5px;flex-shrink:0}
+.meeting-dot.past{background:var(--bg4)}
+.meeting-dot.soon{background:var(--amber);box-shadow:0 0 0 3px var(--amber-dim)}
+.meeting-body{flex:1}
+.meeting-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:3px}
+.meeting-meta{font-size:12px;color:var(--text3)}
+.meeting-note{font-size:12px;color:var(--text2);margin-top:4px;font-style:italic}
+.meeting-actions{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.badge{font-size:11px;padding:3px 8px;border-radius:20px;font-weight:500}
+.badge-soon{background:var(--amber-dim);color:var(--amber)}
+.badge-ok{background:var(--green-dim);color:var(--green)}
+.badge-past{background:var(--bg3);color:var(--text3)}
+.badge-now{background:var(--red-dim);color:var(--red);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.del-btn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:16px;padding:2px;transition:color .15s}
+.del-btn:hover{color:var(--red)}
+
+/* Forms */
+.form-row{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.form-row label{font-size:13px;color:var(--text2);font-weight:500}
+.form-row input,.form-row select,.form-row textarea{
+  background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius-sm);
+  color:var(--text);padding:10px 14px;font-size:15px;width:100%;
+  transition:border .15s;appearance:none;-webkit-appearance:none
+}
+.form-row input:focus,.form-row select:focus{outline:none;border-color:var(--accent)}
+.form-row select option{background:var(--bg2)}
+.submit-btn{
+  width:100%;padding:14px;background:var(--accent);color:#0c1a2e;
+  border:none;border-radius:var(--radius);font-size:15px;font-weight:600;
+  cursor:pointer;transition:opacity .15s;margin-top:4px
+}
+.submit-btn:active{opacity:.8}
+
+/* Sticky notes grid */
+.stickies{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.stickies{grid-template-columns:1fr}}
+.sticky{border-radius:var(--radius);padding:16px;min-height:240px;display:flex;flex-direction:column;gap:10px}
+.sticky-today{background:#1a2a1a;border:1px solid #2d5a2d}
+.sticky-tomorrow{background:#1a1f2e;border:1px solid #1e3a5f}
+.sticky-header{display:flex;align-items:center;justify-content:space-between}
+.sticky-label{font-size:13px;font-weight:600}
+.sticky-today .sticky-label{color:var(--green)}
+.sticky-tomorrow .sticky-label{color:var(--accent)}
+.sticky-date{font-size:11px;color:var(--text3)}
+.task-list{display:flex;flex-direction:column;gap:8px;flex:1}
+.task-item{display:flex;align-items:center;gap:8px}
+.task-check{width:18px;height:18px;accent-color:var(--green);cursor:pointer;flex-shrink:0}
+.task-text{font-size:14px;color:var(--text);flex:1;cursor:pointer}
+.task-text.done{text-decoration:line-through;color:var(--text3)}
+.task-del{background:none;border:none;cursor:pointer;color:var(--text3);font-size:14px;padding:2px;flex-shrink:0}
+.task-del:hover{color:var(--red)}
+.task-add{display:flex;gap:8px;margin-top:auto}
+.task-add input{
+  flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:13px
+}
+.task-add input:focus{outline:none;border-color:var(--accent)}
+.task-add button{
+  padding:8px 12px;border-radius:var(--radius-sm);border:none;cursor:pointer;
+  font-size:13px;font-weight:600
+}
+.sticky-today .task-add button{background:var(--green);color:#0a1f0a}
+.sticky-tomorrow .task-add button{background:var(--accent);color:#0c1a2e}
+
+/* Empty state */
+.empty{text-align:center;padding:40px 20px;color:var(--text3);font-size:14px}
+.empty svg{margin-bottom:12px;opacity:.3}
+
+/* Alert toast */
+.toast{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-100px);
+  background:var(--amber);color:#1a0a00;border-radius:var(--radius);
+  padding:12px 20px;font-size:14px;font-weight:600;z-index:9999;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);max-width:320px;text-align:center;
+  box-shadow:0 4px 20px rgba(0,0,0,.4)
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* Summary bar */
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.stat{background:var(--bg2);border-radius:var(--radius-sm);padding:12px;text-align:center;border:1px solid var(--bg3)}
+.stat-num{font-size:22px;font-weight:600;color:var(--accent);line-height:1}
+.stat-label{font-size:11px;color:var(--text3);margin-top:3px}
+
+/* Reminder alert bar */
+.alert-bar{background:var(--amber-dim);border:1px solid var(--amber);border-radius:var(--radius-sm);
+  padding:10px 14px;font-size:13px;color:var(--amber);margin-bottom:12px;display:none;
+  animation:pulse 2s infinite}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-clock" id="clock">--:--</div>
+      <div class="header-date" id="hdate">...</div>
+    </div>
+    <div class="next-badge" id="next-badge" style="display:none"></div>
+  </div>
+
+  <nav class="nav">
+    <button class="nav-btn active" onclick="go('home')">الرئيسية</button>
+    <button class="nav-btn" onclick="go('meetings')">مواعيد المدير</button>
+    <button class="nav-btn" onclick="go('tasks')">مهام اليوم</button>
+    <button class="nav-btn" onclick="go('add')">إضافة موعد</button>
+  </nav>
+
+  <!-- HOME -->
+  <div class="content active" id="sec-home">
+    <div class="alert-bar" id="alert-bar"></div>
+    <div class="summary">
+      <div class="stat"><div class="stat-num" id="s-today">0</div><div class="stat-label">مواعيد اليوم</div></div>
+      <div class="stat"><div class="stat-num" id="s-upcoming">0</div><div class="stat-label">قادمة</div></div>
+      <div class="stat"><div class="stat-num" id="s-tasks">0</div><div class="stat-label">مهام اليوم</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">▸ أقرب موعد</div>
+      <div id="home-next"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">▸ مهام لم تنجز اليوم</div>
+      <div id="home-tasks"></div>
+    </div>
+  </div>
+
+  <!-- MEETINGS -->
+  <div class="content" id="sec-meetings">
+    <div class="alert-bar" id="alert-bar2"></div>
+    <div id="meetings-list"></div>
+  </div>
+
+  <!-- TASKS -->
+  <div class="content" id="sec-tasks">
+    <div class="stickies">
+      <div class="sticky sticky-today">
+        <div class="sticky-header">
+          <span class="sticky-label">▸ مهام اليوم</span>
+          <span class="sticky-date" id="today-lbl"></span>
+        </div>
+        <div class="task-list" id="today-list"></div>
+        <div class="task-add">
+          <input id="today-inp" type="text" placeholder="مهمة جديدة..."/>
+          <button onclick="addTask('today')">+</button>
+        </div>
+      </div>
+      <div class="sticky sticky-tomorrow">
+        <div class="sticky-header">
+          <span class="sticky-label">▸ مهام الغد</span>
+          <span class="sticky-date" id="tom-lbl"></span>
+        </div>
+        <div class="task-list" id="tom-list"></div>
+        <div class="task-add">
+          <input id="tom-inp" type="text" placeholder="مهمة الغد..."/>
+          <button onclick="addTask('tomorrow')">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD -->
+  <div class="content" id="sec-add">
+    <div class="card">
+      <div class="card-title">إضافة موعد أو اجتماع</div>
+      <div class="form-row">
+        <label>عنوان الموعد</label>
+        <input type="text" id="f-title" placeholder="مثال: اجتماع مجلس الإدارة"/>
+      </div>
+      <div class="form-row">
+        <label>التاريخ</label>
+        <input type="date" id="f-date"/>
+      </div>
+      <div class="form-row">
+        <label>الوقت</label>
+        <input type="time" id="f-time"/>
+      </div>
+      <div class="form-row">
+        <label>التذكير</label>
+        <select id="f-remind">
+          <option value="5">قبل 5 دقائق</option>
+          <option value="10">قبل 10 دقائق</option>
+          <option value="15" selected>قبل 15 دقيقة</option>
+          <option value="30">قبل 30 دقيقة</option>
+          <option value="60">قبل ساعة</option>
+          <option value="120">قبل ساعتين</option>
+          <option value="1440">قبل يوم كامل</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>ملاحظة (اختياري)</label>
+        <input type="text" id="f-note" placeholder="أي تفاصيل إضافية"/>
+      </div>
+      <button class="submit-btn" onclick="saveMeeting()">حفظ الموعد</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+const MONTHS=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+let meetings=JSON.parse(localStorage.getItem('m_meetings')||'[]');
+let tasks=JSON.parse(localStorage.getItem('m_tasks')||'{"today":[],"tomorrow":[]}');
+let notified=JSON.parse(localStorage.getItem('m_notified')||'[]');
+
+function save(){localStorage.setItem('m_meetings',JSON.stringify(meetings));localStorage.setItem('m_tasks',JSON.stringify(tasks));}
+
+function go(sec){
+  document.querySelectorAll('.content').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(e=>e.classList.remove('active'));
+  document.getElementById('sec-'+sec).classList.add('active');
+  const idx={home:0,meetings:1,tasks:2,add:3}[sec];
+  document.querySelectorAll('.nav-btn')[idx].classList.add('active');
+  if(sec==='home')renderHome();
+  if(sec==='meetings')renderMeetings();
+  if(sec==='tasks')renderTasks();
+}
+
+function fmtDate(dt){return `${DAYS[dt.getDay()]}، ${dt.getDate()} ${MONTHS[dt.getMonth()]}`}
+function fmtTime(dt){return dt.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'})}
+
+function renderMeetingItem(m,now){
+  const mt=new Date(m.date+'T'+m.time);
+  const diff=(mt-now)/60000;
+  let badgeHtml='',dotClass='';
+  if(diff<-5){badgeHtml='<span class="badge badge-past">انتهى</span>';dotClass='past';}
+  else if(diff<0){badgeHtml='<span class="badge badge-now">الآن</span>';dotClass='soon';}
+  else if(diff<=30){badgeHtml='<span class="badge badge-soon">قريباً</span>';dotClass='soon';}
+  else{badgeHtml='<span class="badge badge-ok">قادم</span>';}
+  return `<div class="meeting">
+    <div class="meeting-dot ${dotClass}"></div>
+    <div class="meeting-body">
+      <div class="meeting-title">${m.title}</div>
+      <div class="meeting-meta">${fmtDate(mt)} &nbsp;·&nbsp; ${fmtTime(mt)} &nbsp;·&nbsp; تذكير قبل ${m.remind} دقيقة</div>
+      ${m.note?`<div class="meeting-note">${m.note}</div>`:''}
+    </div>
+    <div class="meeting-actions">
+      ${badgeHtml}
+      <button class="del-btn" onclick="delMeeting(${m.id})">✕</button>
+    </div>
+  </div>`;
+}
+
+function renderMeetings(){
+  const now=new Date();
+  const list=document.getElementById('meetings-list');
+  if(!meetings.length){list.innerHTML='<div class="empty"><div>لا توجد مواعيد مسجلة</div></div>';return;}
+  const todayStr=now.toISOString().split('T')[0];
+  const upcoming=meetings.filter(m=>m.date>=todayStr);
+  const past=meetings.filter(m=>m.date<todayStr);
+  let html='';
+  if(upcoming.length){
+    html+=`<div class="card"><div class="card-title">المواعيد القادمة (${upcoming.length})</div>${upcoming.map(m=>renderMeetingItem(m,now)).join('')}</div>`;
+  }
+  if(past.length){
+    html+=`<div class="card"><div class="card-title">المواعيد السابقة</div>${past.map(m=>renderMeetingItem(m,now)).join('')}</div>`;
+  }
+  list.innerHTML=html;
+}
+
+function renderHome(){
+  const now=new Date();
+  const todayStr=now.toISOString().split('T')[0];
+  const todayMeetings=meetings.filter(m=>m.date===todayStr);
+  const upcoming=meetings.filter(m=>{const mt=new Date(m.date+'T'+m.time);return mt>now;});
+  const pendingTasks=tasks.today.filter(t=>!t.done);
+  document.getElementById('s-today').textContent=todayMeetings.length;
+  document.getElementById('s-upcoming').textContent=upcoming.length;
+  document.getElementById('s-tasks').textContent=pendingTasks.length;
+  const nextEl=document.getElementById('home-next');
+  if(upcoming.length){
+    const m=upcoming[0];
+    const mt=new Date(m.date+'T'+m.time);
+    const diff=Math.round((mt-now)/60000);
+    nextEl.innerHTML=renderMeetingItem(m,now)+`<div style="margin-top:8px;font-size:13px;color:var(--text2)">بعد ${diff<60?diff+' دقيقة':Math.round(diff/60)+' ساعة'}</div>`;
+  } else {
+    nextEl.innerHTML='<div class="empty" style="padding:16px 0">لا توجد مواعيد قادمة</div>';
+  }
+  const htasks=document.getElementById('home-tasks');
+  if(pendingTasks.length){
+    htasks.innerHTML=pendingTasks.map(t=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--bg3)"><span style="color:var(--green);font-size:16px">○</span><span style="font-size:14px;color:var(--text)">${t.text}</span></div>`).join('');
+  } else {
+    htasks.innerHTML='<div class="empty" style="padding:16px 0">أنجزت كل المهام!</div>';
+  }
+}
+
+function renderTasks(){
+  const now=new Date();
+  const tom=new Date(now); tom.setDate(tom.getDate()+1);
+  document.getElementById('today-lbl').textContent=`${now.getDate()} ${MONTHS[now.getMonth()]}`;
+  document.getElementById('tom-lbl').textContent=`${tom.getDate()} ${MONTHS[tom.getMonth()]}`;
+  ['today','tomorrow'].forEach(w=>{
+    const listEl=document.getElementById(w==='today'?'today-list':'tom-list');
+    if(!tasks[w].length){listEl.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">لا توجد مهام بعد</div>';return;}
+    listEl.innerHTML=tasks[w].map(t=>`
+      <div class="task-item">
+        <input type="checkbox" class="task-check" ${t.done?'checked':''} onchange="toggleTask('${w}',${t.id})"/>
+        <span class="task-text ${t.done?'done':''}" onclick="toggleTask('${w}',${t.id})">${t.text}</span>
+        <button class="task-del" onclick="delTask('${w}',${t.id})">✕</button>
+      </div>`).join('');
+  });
+}
+
+function addTask(w){
+  const inp=document.getElementById(w==='today'?'today-inp':'tom-inp');
+  const val=inp.value.trim();
+  if(!val)return;
+  tasks[w].push({id:Date.now(),text:val,done:false});
+  save();renderTasks();
+  inp.value='';inp.focus();
+}
+
+function toggleTask(w,id){
+  const t=tasks[w].find(t=>t.id===id);
+  if(t){t.done=!t.done;save();renderTasks();}
+}
+
+function delTask(w,id){
+  tasks[w]=tasks[w].filter(t=>t.id!==id);
+  save();renderTasks();
+}
+
+function saveMeeting(){
+  const title=document.getElementById('f-title').value.trim();
+  const date=document.getElementById('f-date').value;
+  const time=document.getElementById('f-time').value;
+  const remind=parseInt(document.getElementById('f-remind').value);
+  const note=document.getElementById('f-note').value.trim();
+  if(!title||!date||!time){showToast('يرجى تعبئة العنوان والتاريخ والوقت');return;}
+  meetings.push({id:Date.now(),title,date,time,remind,note});
+  meetings.sort((a,b)=>new Date(a.date+'T'+a.time)-new Date(b.date+'T'+b.time));
+  save();
+  document.getElementById('f-title').value='';
+  document.getElementById('f-note').value='';
+  showToast('تم حفظ الموعد بنجاح ✓');
+  requestNotif();
+  setTimeout(()=>go('meetings'),1200);
+}
+
+function delMeeting(id){
+  meetings=meetings.filter(m=>m.id!==id);
+  save();renderMeetings();
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+function playBeep(){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    [[880,.15],[1100,.45],[880,.75]].forEach(([f,d])=>{
+      const o=ctx.createOscillator(),g=ctx.createGain();
+      o.connect(g);g.connect(ctx.destination);
+      o.frequency.value=f;g.gain.value=0.25;
+      o.start(ctx.currentTime+d);o.stop(ctx.currentTime+d+0.18);
+    });
+  }catch(e){}
+}
+
+function requestNotif(){
+  if('Notification'in window&&Notification.permission==='default') Notification.requestPermission();
+}
+
+function checkReminders(){
+  const now=new Date();
+  let alertMsg='';
+  meetings.forEach(m=>{
+    const mt=new Date(m.date+'T'+m.time);
+    const diff=(mt-now)/60000;
+    const key=`${m.id}_${m.remind}`;
+    if(diff>0&&diff<=m.remind&&!notified.includes(key)){
+      notified.push(key);
+      localStorage.setItem('m_notified',JSON.stringify(notified));
+      playBeep();
+      const msg=`تذكير: "${m.title}" بعد ${Math.round(diff)} دقيقة`;
+      showToast(msg);
+      if(Notification.permission==='granted') new Notification('تذكير موعد',{body:msg});
+    }
+    if(diff>0&&diff<=30&&!alertMsg) alertMsg=`⏰ "${m.title}" بعد ${Math.round(diff)} دقيقة`;
+  });
+  ['alert-bar','alert-bar2'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){el.style.display=alertMsg?'block':'none';if(alertMsg)el.textContent=alertMsg;}
+  });
+  const nb=document.getElementById('next-badge');
+  if(alertMsg){nb.style.display='block';nb.textContent=alertMsg;}
+  else{nb.style.display='none';}
+}
+
+function tick(){
+  const now=new Date();
+  document.getElementById('clock').textContent=now.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.getElementById('hdate').textContent=`${DAYS[now.getDay()]}، ${now.getDate()} ${MONTHS[now.getMonth()]} ${now.getFullYear()}`;
+  checkReminders();
+}
+
+function migrateTasks(){
+  const now=new Date();
+  const lastCheck=localStorage.getItem('m_last_day')||'';
+  const todayStr=now.toISOString().split('T')[0];
+  if(lastCheck&&lastCheck!==todayStr){
+    tasks.today=tasks.tomorrow;
+    tasks.tomorrow=[];
+    save();
+  }
+  localStorage.setItem('m_last_day',todayStr);
+}
+
+document.getElementById('f-date').valueAsDate=new Date();
+const now2=new Date();
+document.getElementById('f-time').value=`${String(now2.getHours()).padStart(2,'0')}:${String(now2.getMinutes()).padStart(2,'0')}`;
+
+document.getElementById('today-inp').addEventListener('keydown',e=>{if(e.key==='Enter')addTask('today')});
+document.getElementById('tom-inp').addEventListener('keydown',e=>{if(e.key==='Enter')addTask('tomorrow')});
+
+if('serviceWorker'in navigator) navigator.serviceWorker.register('./sw.js');
+migrateTasks();
+renderHome();
+tick();
+setInterval(tick,1000);
+requestNotif();
+</script>
+</body>
+</html>
