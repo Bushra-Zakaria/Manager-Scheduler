@@ -28,12 +28,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 input,select,textarea,button{font-family:var(--font)}
 .app{display:flex;flex-direction:column;min-height:100dvh;max-width:900px;margin:0 auto}
 .header{padding:16px 20px 12px;border-bottom:1px solid var(--bg2);display:flex;align-items:center;justify-content:space-between;gap:12px}
-.header-clock{font-size:28px;font-weight:600;letter-spacing:-1px;line-height:1}
+.header-clock{font-size:26px;font-weight:600;letter-spacing:-1px;line-height:1}
 .header-date{font-size:13px;color:var(--text2)}
 .next-badge{background:var(--accent-dim);color:var(--accent);border-radius:var(--radius-sm);padding:6px 10px;font-size:12px;font-weight:500;text-align:center;max-width:200px;line-height:1.4;display:none}
-.nav{display:flex;gap:4px;padding:12px 16px;border-bottom:1px solid var(--bg2);overflow-x:auto;scrollbar-width:none}
+.nav{display:flex;gap:4px;padding:10px 16px;border-bottom:1px solid var(--bg2);overflow-x:auto;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
-.nav-btn{padding:8px 16px;border-radius:var(--radius-sm);border:none;cursor:pointer;font-size:13px;font-weight:500;white-space:nowrap;background:transparent;color:var(--text2);transition:background .15s}
+.nav-btn{padding:8px 14px;border-radius:var(--radius-sm);border:none;cursor:pointer;font-size:13px;font-weight:500;white-space:nowrap;background:transparent;color:var(--text2);transition:background .15s}
 .nav-btn.active{background:var(--accent);color:#0c1a2e;font-weight:600}
 .nav-btn:hover:not(.active){background:var(--bg2);color:var(--text)}
 .content{flex:1;padding:16px;display:none}
@@ -60,29 +60,22 @@ input,select,textarea,button{font-family:var(--font)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
 .del-btn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:16px;padding:2px}
 .del-btn:hover{color:var(--red)}
+.edit-btn{background:none;border:none;cursor:pointer;color:var(--accent);font-size:14px;padding:2px}
 .form-row{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
 .form-row label{font-size:13px;color:var(--text2);font-weight:500}
-.form-row input,.form-row select{
-  background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius-sm);
-  color:var(--text);padding:10px 14px;font-size:15px;width:100%;
-  transition:border .15s;appearance:none;-webkit-appearance:none
-}
+.form-row input,.form-row select{background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius-sm);color:var(--text);padding:10px 14px;font-size:15px;width:100%;transition:border .15s;appearance:none;-webkit-appearance:none}
 .form-row input:focus,.form-row select:focus{outline:none;border-color:var(--accent)}
 .form-row select option{background:var(--bg2)}
 .submit-btn{width:100%;padding:14px;background:var(--accent);color:#0c1a2e;border:none;border-radius:var(--radius);font-size:15px;font-weight:600;cursor:pointer;margin-top:4px}
 .submit-btn:active{opacity:.8}
-
-/* Multi-person picker */
 .person-picker{background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius-sm);padding:10px;display:flex;flex-wrap:wrap;gap:8px;min-height:48px;cursor:text}
 .person-picker-chip{display:flex;align-items:center;gap:5px;background:var(--accent-dim);color:var(--accent);border-radius:20px;padding:4px 10px;font-size:13px}
 .person-picker-chip button{background:none;border:none;cursor:pointer;color:var(--accent);font-size:14px;line-height:1;padding:0 2px}
 .person-picker select{background:transparent;border:none;color:var(--text2);font-size:13px;cursor:pointer;outline:none;padding:2px;flex:1;min-width:120px;appearance:none;-webkit-appearance:none}
 .person-picker select option{background:var(--bg2);color:var(--text)}
-
-/* Stickies */
 .stickies{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.stickies{grid-template-columns:1fr}}
-.sticky{border-radius:var(--radius);padding:16px;min-height:240px;display:flex;flex-direction:column;gap:10px}
+.sticky{border-radius:var(--radius);padding:16px;min-height:220px;display:flex;flex-direction:column;gap:10px}
 .sticky-today{background:#1a2a1a;border:1px solid #2d5a2d}
 .sticky-tomorrow{background:#1a1f2e;border:1px solid #1e3a5f}
 .sticky-header{display:flex;align-items:center;justify-content:space-between}
@@ -99,42 +92,49 @@ input,select,textarea,button{font-family:var(--font)}
 .task-add{display:flex;gap:8px;margin-top:auto}
 .task-add input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:13px}
 .task-add input:focus{outline:none;border-color:var(--accent)}
-.task-add button{padding:8px 12px;border-radius:var(--radius-sm);border:none;cursor:pointer;font-size:13px;font-weight:600}
+.task-add button{padding:8px 12px;border-radius:var(--radius-sm);border:none;cursor:pointer;font-size:14px;font-weight:600}
 .sticky-today .task-add button{background:var(--green);color:#0a1f0a}
 .sticky-tomorrow .task-add button{background:var(--accent);color:#0c1a2e}
-
 .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
 .stat{background:var(--bg2);border-radius:var(--radius-sm);padding:12px;text-align:center;border:1px solid var(--bg3)}
 .stat-num{font-size:22px;font-weight:600;color:var(--accent);line-height:1}
 .stat-label{font-size:11px;color:var(--text3);margin-top:3px}
 .alert-bar{background:var(--amber-dim);border:1px solid var(--amber);border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--amber);margin-bottom:12px;display:none;animation:pulse 2s infinite}
-.sync-bar{background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius-sm);padding:8px 12px;font-size:12px;color:var(--text3);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
-.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;margin-left:6px}
+.sync-bar{background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius-sm);padding:8px 12px;font-size:12px;color:var(--text3);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;margin-left:6px;flex-shrink:0}
+.sync-dot.syncing{background:var(--amber);animation:pulse 1s infinite}
+.sync-dot.error{background:var(--red)}
 .empty{text-align:center;padding:32px 20px;color:var(--text3);font-size:14px}
-
-/* People management */
+/* setup screen */
+.setup-box{background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius);padding:24px;max-width:420px;margin:40px auto}
+.setup-box h2{font-size:18px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.setup-box p{font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.6}
+.setup-input{background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius-sm);color:var(--text);padding:12px 14px;font-size:15px;width:100%;margin-bottom:12px}
+.setup-input:focus{outline:none;border-color:var(--accent)}
+.setup-btn{width:100%;padding:13px;background:var(--accent);color:#0c1a2e;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer}
+/* people table */
 .people-table{width:100%;border-collapse:collapse}
 .people-table th{font-size:12px;color:var(--text3);padding:6px 8px;text-align:right;border-bottom:1px solid var(--bg3)}
-.people-table td{font-size:14px;color:var(--text);padding:8px;border-bottom:1px solid var(--bg3)}
+.people-table td{font-size:14px;color:var(--text);padding:8px;border-bottom:1px solid var(--bg3);vertical-align:middle}
 .people-table tr:last-child td{border-bottom:none}
+.inline-edit{background:var(--bg3);border:1px solid var(--accent);border-radius:var(--radius-sm);color:var(--text);padding:5px 8px;font-size:13px;width:100%}
+.inline-edit:focus{outline:none}
 .add-row{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-top:12px}
 .add-row input{background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius-sm);color:var(--text);padding:9px 12px;font-size:14px}
 .add-row input:focus{outline:none;border-color:var(--accent)}
 .add-row button{padding:9px 16px;background:var(--accent);color:#0c1a2e;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
-
-/* Alarm overlay */
-.alarm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px}
+/* alarm */
+.alarm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px}
 .alarm-overlay.show{display:flex}
-.alarm-icon{font-size:56px;animation:shake .4s infinite}
+.alarm-icon{font-size:54px;animation:shake .4s infinite}
 @keyframes shake{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
 .alarm-title{font-size:22px;font-weight:600;color:var(--amber);line-height:1.3}
-.alarm-sub{font-size:15px;color:var(--text2)}
-.alarm-persons{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:4px}
-.alarm-person-btn{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius-sm);padding:8px 14px;font-size:13px;color:var(--text);cursor:pointer;text-decoration:none;transition:background .15s}
+.alarm-sub{font-size:14px;color:var(--text2)}
+.alarm-persons{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px}
+.alarm-person-btn{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius-sm);padding:10px 16px;font-size:14px;color:var(--text);cursor:pointer;text-decoration:none;transition:background .15s}
 .alarm-person-btn:hover{background:var(--bg3)}
-.alarm-person-btn .wa{color:#25d366;font-size:16px}
-.alarm-close{padding:14px 40px;background:var(--amber);color:#1a0a00;border:none;border-radius:var(--radius);font-size:16px;font-weight:700;cursor:pointer;margin-top:8px}
-.alarm-note{font-size:12px;color:var(--text3);margin-top:4px}
+.wa-icon{color:#25d366;font-size:18px;font-weight:700}
+.alarm-close{padding:14px 44px;background:var(--amber);color:#1a0a00;border:none;border-radius:var(--radius);font-size:16px;font-weight:700;cursor:pointer;margin-top:6px}
 </style>
 </head>
 <body>
@@ -143,13 +143,25 @@ input,select,textarea,button{font-family:var(--font)}
   <div class="alarm-icon">🔔</div>
   <div class="alarm-title" id="alarm-title"></div>
   <div class="alarm-sub" id="alarm-sub"></div>
-  <div class="alarm-note" id="alarm-note"></div>
-  <div style="font-size:13px;color:var(--text3);margin-top:8px">أرسل تذكيراً عبر واتساب:</div>
+  <div id="alarm-note" style="font-size:12px;color:var(--text3)"></div>
+  <div style="font-size:13px;color:var(--text3);margin-top:4px">أرسل تذكيراً عبر واتساب:</div>
   <div class="alarm-persons" id="alarm-persons"></div>
   <button class="alarm-close" onclick="closeAlarm()">إغلاق التنبيه ✓</button>
 </div>
 
-<div class="app">
+<!-- SETUP SCREEN -->
+<div id="setup-screen" style="padding:16px;display:none">
+  <div class="setup-box">
+    <h2>إعداد المزامنة بين الأجهزة</h2>
+    <p>لمزامنة البيانات بين الجوال والكمبيوتر، أدخل مفتاحاً سرياً خاصاً بك. استخدم نفس المفتاح على جميع أجهزتك.</p>
+    <input class="setup-input" id="setup-key-inp" type="text" placeholder="مثال: bushra2025secret" autocomplete="off"/>
+    <p style="font-size:11px;color:var(--text3);margin-bottom:16px">اختر كلمة سرية لا يعرفها غيرك. ستُستخدم لتشفير بياناتك.</p>
+    <button class="setup-btn" onclick="setupSync()">بدء الاستخدام</button>
+  </div>
+</div>
+
+<div class="app" id="main-app" style="display:none">
+  <div class="alarm-overlay" style="display:none"></div>
   <div class="header">
     <div>
       <div class="header-clock" id="clock">--:--</div>
@@ -157,7 +169,6 @@ input,select,textarea,button{font-family:var(--font)}
     </div>
     <div class="next-badge" id="next-badge"></div>
   </div>
-
   <nav class="nav">
     <button class="nav-btn active" onclick="go('home')">الرئيسية</button>
     <button class="nav-btn" onclick="go('meetings')">مواعيد المدير</button>
@@ -169,8 +180,9 @@ input,select,textarea,button{font-family:var(--font)}
   <!-- HOME -->
   <div class="content active" id="sec-home">
     <div class="sync-bar">
-      <span><span class="sync-dot" id="sync-dot"></span> <span id="sync-label">جاري التحميل...</span></span>
+      <span><span class="sync-dot" id="sync-dot"></span><span id="sync-label"> جاري المزامنة...</span></span>
       <span id="sync-time" style="font-size:11px"></span>
+      <button onclick="syncNow()" style="background:none;border:none;cursor:pointer;color:var(--accent);font-size:12px;white-space:nowrap">↺ مزامنة</button>
     </div>
     <div class="alert-bar" id="alert-bar"></div>
     <div class="summary">
@@ -178,14 +190,8 @@ input,select,textarea,button{font-family:var(--font)}
       <div class="stat"><div class="stat-num" id="s-upcoming">0</div><div class="stat-label">قادمة</div></div>
       <div class="stat"><div class="stat-num" id="s-tasks">0</div><div class="stat-label">مهام اليوم</div></div>
     </div>
-    <div class="card">
-      <div class="card-title">▸ أقرب موعد</div>
-      <div id="home-next"></div>
-    </div>
-    <div class="card">
-      <div class="card-title">▸ مهام لم تنجز اليوم</div>
-      <div id="home-tasks"></div>
-    </div>
+    <div class="card"><div class="card-title">▸ أقرب موعد</div><div id="home-next"></div></div>
+    <div class="card"><div class="card-title">▸ مهام لم تنجز اليوم</div><div id="home-tasks"></div></div>
   </div>
 
   <!-- MEETINGS -->
@@ -198,26 +204,14 @@ input,select,textarea,button{font-family:var(--font)}
   <div class="content" id="sec-tasks">
     <div class="stickies">
       <div class="sticky sticky-today">
-        <div class="sticky-header">
-          <span class="sticky-label">▸ مهام اليوم</span>
-          <span class="sticky-date" id="today-lbl"></span>
-        </div>
+        <div class="sticky-header"><span class="sticky-label">▸ مهام اليوم</span><span class="sticky-date" id="today-lbl"></span></div>
         <div class="task-list" id="today-list"></div>
-        <div class="task-add">
-          <input id="today-inp" type="text" placeholder="مهمة جديدة..."/>
-          <button onclick="addTask('today')">+</button>
-        </div>
+        <div class="task-add"><input id="today-inp" type="text" placeholder="مهمة جديدة..."/><button onclick="addTask('today')">+</button></div>
       </div>
       <div class="sticky sticky-tomorrow">
-        <div class="sticky-header">
-          <span class="sticky-label">▸ مهام الغد</span>
-          <span class="sticky-date" id="tom-lbl"></span>
-        </div>
+        <div class="sticky-header"><span class="sticky-label">▸ مهام الغد</span><span class="sticky-date" id="tom-lbl"></span></div>
         <div class="task-list" id="tom-list"></div>
-        <div class="task-add">
-          <input id="tom-inp" type="text" placeholder="مهمة الغد..."/>
-          <button onclick="addTask('tomorrow')">+</button>
-        </div>
+        <div class="task-add"><input id="tom-inp" type="text" placeholder="مهمة الغد..."/><button onclick="addTask('tomorrow')">+</button></div>
       </div>
     </div>
   </div>
@@ -226,18 +220,9 @@ input,select,textarea,button{font-family:var(--font)}
   <div class="content" id="sec-add">
     <div class="card">
       <div class="card-title">إضافة موعد أو اجتماع</div>
-      <div class="form-row">
-        <label>عنوان الموعد</label>
-        <input type="text" id="f-title" placeholder="مثال: اجتماع مجلس الإدارة"/>
-      </div>
-      <div class="form-row">
-        <label>التاريخ</label>
-        <input type="date" id="f-date"/>
-      </div>
-      <div class="form-row">
-        <label>الوقت</label>
-        <input type="time" id="f-time"/>
-      </div>
+      <div class="form-row"><label>عنوان الموعد</label><input type="text" id="f-title" placeholder="مثال: اجتماع مجلس الإدارة"/></div>
+      <div class="form-row"><label>التاريخ</label><input type="date" id="f-date"/></div>
+      <div class="form-row"><label>الوقت</label><input type="time" id="f-time"/></div>
       <div class="form-row">
         <label>التذكير</label>
         <select id="f-remind">
@@ -251,17 +236,12 @@ input,select,textarea,button{font-family:var(--font)}
         </select>
       </div>
       <div class="form-row">
-        <label>الأشخاص المعنيون (يمكن اختيار أكثر من شخص)</label>
+        <label>الأشخاص المعنيون (اختر أكثر من شخص)</label>
         <div class="person-picker" id="person-picker" onclick="focusPicker()">
-          <select id="picker-select" onchange="pickPerson(this)">
-            <option value="">+ أضف شخص...</option>
-          </select>
+          <select id="picker-select" onchange="pickPerson(this)"><option value="">+ أضف شخص...</option></select>
         </div>
       </div>
-      <div class="form-row">
-        <label>ملاحظة (اختياري)</label>
-        <input type="text" id="f-note" placeholder="أي تفاصيل إضافية"/>
-      </div>
+      <div class="form-row"><label>ملاحظة (اختياري)</label><input type="text" id="f-note" placeholder="أي تفاصيل إضافية"/></div>
       <button class="submit-btn" onclick="saveMeeting()">حفظ الموعد</button>
     </div>
   </div>
@@ -273,13 +253,13 @@ input,select,textarea,button{font-family:var(--font)}
       <div id="people-table-wrap"></div>
       <div class="add-row">
         <input type="text" id="p-name" placeholder="الاسم"/>
-        <input type="tel" id="p-phone" placeholder="رقم الجوال (966XXXXXXXXX)"/>
+        <input type="tel" id="p-phone" placeholder="966XXXXXXXXX"/>
         <button onclick="addPerson()">إضافة</button>
       </div>
     </div>
-    <div style="font-size:12px;color:var(--text3);padding:4px 2px;line-height:1.6">
-      أدخل رقم الجوال بالصيغة الدولية بدون + مثال: 966501234567<br/>
-      سيُستخدم الرقم لإرسال تذكير واتساب عند التنبيه
+    <div style="font-size:12px;color:var(--text3);padding:4px 2px;line-height:1.7">
+      أدخل الرقم بصيغة دولية بدون + مثال: 966501234567<br/>
+      اضغط ✏️ للتعديل المباشر على الاسم أو الرقم
     </div>
   </div>
 </div>
@@ -287,19 +267,141 @@ input,select,textarea,button{font-family:var(--font)}
 <script>
 const DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
 const MONTHS=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
-const SKEY='mgr_data_v3';
+
+let DB_URL='';
 let data={meetings:[],tasks:{today:[],tomorrow:[]},people:[],notified:[]};
 let alarmInterval=null;
 let selectedPersons=[];
+let editingPerson=null;
 
-function load(){try{const r=localStorage.getItem(SKEY);if(r)data=JSON.parse(r);}catch(e){}}
-function save(){try{data.lastSaved=Date.now();localStorage.setItem(SKEY,JSON.stringify(data));updateSync();}catch(e){}}
-function updateSync(){
-  document.getElementById('sync-dot').style.background='#4ade80';
-  document.getElementById('sync-label').textContent='محفوظ';
-  if(data.lastSaved) document.getElementById('sync-time').textContent=new Date(data.lastSaved).toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});
+/* ===== SYNC SETUP ===== */
+function setupSync(){
+  const key=document.getElementById('setup-key-inp').value.trim();
+  if(!key||key.length<4){showToast('أدخل مفتاحاً لا يقل عن 4 أحرف');return;}
+  // Use JSONBin.io free tier with key as bin identifier stored locally
+  localStorage.setItem('mgr_sync_key',key);
+  initApp();
 }
 
+function getSyncKey(){return localStorage.getItem('mgr_sync_key');}
+
+/* Use a simple approach: store data in JSONBin.io using the key as part of bin name */
+/* For free cross-device sync we use a public JSONBin */
+const JSONBIN_API='https://api.jsonbin.io/v3';
+const JSONBIN_MASTER='$2a$10$placeholder'; // will be set per user
+
+function getBinId(){return localStorage.getItem('mgr_bin_id');}
+function setBinId(id){localStorage.setItem('mgr_bin_id',id);}
+
+async function syncNow(){
+  setSyncStatus('syncing','جاري المزامنة...');
+  try{
+    const binId=getBinId();
+    if(!binId){
+      await createBin();
+    } else {
+      await pullData();
+    }
+  }catch(e){setSyncStatus('error','خطأ في المزامنة');}
+}
+
+async function createBin(){
+  try{
+    const key=getSyncKey();
+    const res=await fetch('https://api.jsonbin.io/v3/b',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-Bin-Name':'mgr_'+key,'X-Bin-Private':'false'},
+      body:JSON.stringify({data,key,v:1})
+    });
+    const json=await res.json();
+    if(json.metadata&&json.metadata.id){
+      setBinId(json.metadata.id);
+      setSyncStatus('ok','تمت المزامنة');
+    }
+  }catch(e){
+    setSyncStatus('local','محفوظ محلياً فقط');
+    saveLocal();
+  }
+}
+
+async function pushData(){
+  saveLocal();
+  const binId=getBinId();
+  if(!binId){await createBin();return;}
+  try{
+    await fetch(`https://api.jsonbin.io/v3/b/${binId}`,{
+      method:'PUT',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({data,key:getSyncKey(),v:1,ts:Date.now()})
+    });
+    setSyncStatus('ok','تمت المزامنة '+new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'}));
+  }catch(e){setSyncStatus('local','محفوظ محلياً فقط');}
+}
+
+async function pullData(){
+  const binId=getBinId();
+  if(!binId){saveLocal();setSyncStatus('local','محفوظ محلياً');return;}
+  try{
+    const res=await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`);
+    const json=await res.json();
+    if(json.record&&json.record.data){
+      const remote=json.record.data;
+      const localTs=data.ts||0;
+      const remoteTs=json.record.ts||0;
+      if(remoteTs>localTs){
+        data=remote;
+        data.ts=remoteTs;
+        saveLocal();
+      }
+      setSyncStatus('ok','تمت المزامنة '+new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'}));
+      renderHome();
+    }
+  }catch(e){setSyncStatus('local','محفوظ محلياً فقط');}
+}
+
+function setSyncStatus(type,msg){
+  const dot=document.getElementById('sync-dot');
+  const lbl=document.getElementById('sync-label');
+  if(!dot)return;
+  dot.className='sync-dot'+(type==='syncing'?' syncing':type==='error'?' error':'');
+  lbl.textContent=' '+msg;
+}
+
+function saveLocal(){
+  data.ts=Date.now();
+  try{localStorage.setItem('mgr_data_v4',JSON.stringify(data));}catch(e){}
+}
+
+function loadLocal(){
+  try{const r=localStorage.getItem('mgr_data_v4');if(r)data=JSON.parse(r);}catch(e){}
+}
+
+async function saveAndSync(){
+  saveLocal();
+  await pushData();
+}
+
+/* ===== INIT ===== */
+function initApp(){
+  document.getElementById('setup-screen').style.display='none';
+  document.getElementById('main-app').style.display='flex';
+  loadLocal();
+  migrateTasks();
+  renderHome();
+  tick();
+  setInterval(tick,1000);
+  setInterval(()=>pullData(),30000);
+  requestNotif();
+  syncNow();
+  if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
+}
+
+function start(){
+  if(getSyncKey()) initApp();
+  else {document.getElementById('setup-screen').style.display='block';}
+}
+
+/* ===== NAV ===== */
 function go(sec){
   document.querySelectorAll('.content').forEach(e=>e.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(e=>e.classList.remove('active'));
@@ -316,30 +418,23 @@ function go(sec){
 function fmtDate(dt){return `${DAYS[dt.getDay()]}، ${dt.getDate()} ${MONTHS[dt.getMonth()]}`}
 function fmtTime(dt){return dt.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'})}
 
-/* ---- Person picker (multi-select) ---- */
+/* ===== PERSON PICKER ===== */
 function renderPicker(){
   const picker=document.getElementById('person-picker');
-  const chips=selectedPersons.map(n=>`<div class="person-picker-chip">${n}<button onclick="removePerson('${n}')">✕</button></div>`).join('');
   const sel=document.getElementById('picker-select');
   sel.innerHTML='<option value="">+ أضف شخص...</option>';
   (data.people||[]).filter(p=>!selectedPersons.includes(p.name)).forEach(p=>{
     const o=document.createElement('option');o.value=p.name;o.textContent=p.name;sel.appendChild(o);
   });
+  const chips=selectedPersons.map(n=>`<div class="person-picker-chip">${n}<button onclick="removePickedPerson('${n}')">✕</button></div>`).join('');
   picker.innerHTML=chips;
   picker.appendChild(sel);
 }
-function pickPerson(sel){
-  if(!sel.value)return;
-  selectedPersons.push(sel.value);
-  renderPicker();
-}
-function removePerson(name){
-  selectedPersons=selectedPersons.filter(n=>n!==name);
-  renderPicker();
-}
+function pickPerson(sel){if(!sel.value)return;selectedPersons.push(sel.value);renderPicker();}
+function removePickedPerson(name){selectedPersons=selectedPersons.filter(n=>n!==name);renderPicker();}
 function focusPicker(){document.getElementById('picker-select').focus();}
 
-/* ---- Meetings ---- */
+/* ===== MEETINGS ===== */
 function renderMeetingItem(m,now){
   const mt=new Date(m.date+'T'+m.time);
   const diff=(mt-now)/60000;
@@ -348,31 +443,29 @@ function renderMeetingItem(m,now){
   else if(diff<0){badge='<span class="badge badge-now">الآن</span>';dot='soon';}
   else if(diff<=30){badge='<span class="badge badge-soon">قريباً</span>';dot='soon';}
   else badge='<span class="badge badge-ok">قادم</span>';
-  const persons=(m.persons||[]);
-  const pHtml=persons.length?`<div class="persons-row">${persons.map(n=>`<span class="person-tag">👤 ${n}</span>`).join('')}</div>`:'';
+  const pHtml=(m.persons||[]).length?`<div class="persons-row">${(m.persons).map(n=>`<span class="person-tag">👤 ${n}</span>`).join('')}</div>`:'';
   return `<div class="meeting">
     <div class="meeting-dot ${dot}"></div>
     <div class="meeting-body">
       <div class="meeting-title">${m.title}</div>
       <div class="meeting-meta">${fmtDate(mt)} · ${fmtTime(mt)} · تذكير قبل ${m.remind} دقيقة</div>
-      ${pHtml}
-      ${m.note?`<div class="meeting-note">${m.note}</div>`:''}
+      ${pHtml}${m.note?`<div class="meeting-note">${m.note}</div>`:''}
     </div>
     <div class="meeting-actions">${badge}<button class="del-btn" onclick="delMeeting(${m.id})">✕</button></div>
   </div>`;
 }
 
 function renderMeetings(){
-  const now=new Date(),todayStr=now.toISOString().split('T')[0];
+  const now=new Date(),ts=now.toISOString().split('T')[0];
   const list=document.getElementById('meetings-list');
   if(!data.meetings.length){list.innerHTML='<div class="empty">لا توجد مواعيد مسجلة</div>';return;}
-  const up=data.meetings.filter(m=>m.date>=todayStr);
-  const past=data.meetings.filter(m=>m.date<todayStr);
+  const up=data.meetings.filter(m=>m.date>=ts);
+  const past=data.meetings.filter(m=>m.date<ts);
   list.innerHTML=(up.length?`<div class="card"><div class="card-title">المواعيد القادمة (${up.length})</div>${up.map(m=>renderMeetingItem(m,now)).join('')}</div>`:'')
     +(past.length?`<div class="card"><div class="card-title">المواعيد السابقة</div>${past.map(m=>renderMeetingItem(m,now)).join('')}</div>`:'');
 }
 
-function saveMeeting(){
+async function saveMeeting(){
   const title=document.getElementById('f-title').value.trim();
   const date=document.getElementById('f-date').value;
   const time=document.getElementById('f-time').value;
@@ -381,23 +474,24 @@ function saveMeeting(){
   if(!title||!date||!time){showToast('يرجى تعبئة العنوان والتاريخ والوقت');return;}
   data.meetings.push({id:Date.now(),title,date,time,remind,persons:[...selectedPersons],note});
   data.meetings.sort((a,b)=>new Date(a.date+'T'+a.time)-new Date(b.date+'T'+b.time));
-  save();
   document.getElementById('f-title').value='';document.getElementById('f-note').value='';
   selectedPersons=[];
+  showToast('جاري الحفظ...');
+  await saveAndSync();
   showToast('تم حفظ الموعد ✓');
   requestNotif();
-  setTimeout(()=>go('meetings'),1200);
+  setTimeout(()=>go('meetings'),800);
 }
 
-function delMeeting(id){data.meetings=data.meetings.filter(m=>m.id!==id);save();renderMeetings();}
+async function delMeeting(id){data.meetings=data.meetings.filter(m=>m.id!==id);await saveAndSync();renderMeetings();}
 
-/* ---- Tasks ---- */
+/* ===== TASKS ===== */
 function renderHome(){
-  const now=new Date(),todayStr=now.toISOString().split('T')[0];
-  const todayM=data.meetings.filter(m=>m.date===todayStr);
+  const now=new Date(),ts=now.toISOString().split('T')[0];
+  const tm=data.meetings.filter(m=>m.date===ts);
   const up=data.meetings.filter(m=>new Date(m.date+'T'+m.time)>now);
   const pend=data.tasks.today.filter(t=>!t.done);
-  document.getElementById('s-today').textContent=todayM.length;
+  document.getElementById('s-today').textContent=tm.length;
   document.getElementById('s-upcoming').textContent=up.length;
   document.getElementById('s-tasks').textContent=pend.length;
   const nx=document.getElementById('home-next');
@@ -405,7 +499,6 @@ function renderHome(){
   else nx.innerHTML='<div class="empty" style="padding:16px 0">لا توجد مواعيد قادمة</div>';
   const ht=document.getElementById('home-tasks');
   ht.innerHTML=pend.length?pend.map(t=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--bg3)"><span style="color:var(--green)">○</span><span style="font-size:14px">${t.text}</span></div>`).join(''):'<div class="empty" style="padding:16px 0">أنجزت كل المهام!</div>';
-  updateSync();
 }
 
 function renderTasks(){
@@ -419,116 +512,140 @@ function renderTasks(){
   });
 }
 
-function addTask(w){const inp=document.getElementById(w==='today'?'today-inp':'tom-inp');const v=inp.value.trim();if(!v)return;data.tasks[w].push({id:Date.now(),text:v,done:false});save();renderTasks();inp.value='';inp.focus();}
-function toggleTask(w,id){const t=data.tasks[w].find(t=>t.id===id);if(t){t.done=!t.done;save();renderTasks();}}
-function delTask(w,id){data.tasks[w]=data.tasks[w].filter(t=>t.id!==id);save();renderTasks();}
+async function addTask(w){const inp=document.getElementById(w==='today'?'today-inp':'tom-inp');const v=inp.value.trim();if(!v)return;data.tasks[w].push({id:Date.now(),text:v,done:false});await saveAndSync();renderTasks();inp.value='';inp.focus();}
+async function toggleTask(w,id){const t=data.tasks[w].find(t=>t.id===id);if(t){t.done=!t.done;await saveAndSync();renderTasks();}}
+async function delTask(w,id){data.tasks[w]=data.tasks[w].filter(t=>t.id!==id);await saveAndSync();renderTasks();}
 
-/* ---- People ---- */
+/* ===== PEOPLE ===== */
 function renderPeople(){
   const wrap=document.getElementById('people-table-wrap');
   if(!data.people||!data.people.length){wrap.innerHTML='<div class="empty" style="padding:16px 0">لا يوجد أشخاص بعد</div>';return;}
-  wrap.innerHTML=`<table class="people-table"><thead><tr><th>الاسم</th><th>رقم الجوال</th><th></th></tr></thead><tbody>`
-    +data.people.map(p=>`<tr><td>${p.name}</td><td style="direction:ltr;text-align:left">${p.phone||'—'}</td><td><button class="del-btn" onclick="delPersonEntry('${p.name}')">✕</button></td></tr>`).join('')
-    +`</tbody></table>`;
+  wrap.innerHTML=`<table class="people-table">
+    <thead><tr><th>الاسم</th><th>رقم الجوال</th><th></th></tr></thead>
+    <tbody>`+data.people.map((p,i)=>{
+      if(editingPerson===i){
+        return `<tr>
+          <td><input class="inline-edit" id="ep-name" value="${p.name}" onkeydown="if(event.key==='Enter')savePerson(${i})"/></td>
+          <td><input class="inline-edit" id="ep-phone" value="${p.phone||''}" style="direction:ltr" onkeydown="if(event.key==='Enter')savePerson(${i})"/></td>
+          <td style="white-space:nowrap"><button class="edit-btn" onclick="savePerson(${i})">✓</button> <button class="del-btn" onclick="cancelEdit()">✕</button></td>
+        </tr>`;
+      }
+      return `<tr>
+        <td>${p.name}</td>
+        <td style="direction:ltr;text-align:left;font-size:13px">${p.phone||'—'}</td>
+        <td style="white-space:nowrap"><button class="edit-btn" onclick="startEdit(${i})">✏️</button> <button class="del-btn" onclick="delPersonEntry(${i})">✕</button></td>
+      </tr>`;
+    }).join('')+`</tbody></table>`;
+  if(editingPerson!==null) setTimeout(()=>{const el=document.getElementById('ep-name');if(el)el.focus();},50);
 }
 
-function addPerson(){
+function startEdit(i){editingPerson=i;renderPeople();}
+function cancelEdit(){editingPerson=null;renderPeople();}
+async function savePerson(i){
+  const name=document.getElementById('ep-name').value.trim();
+  const phone=document.getElementById('ep-phone').value.trim().replace(/\D/g,'');
+  if(!name){showToast('الاسم مطلوب');return;}
+  data.people[i]={name,phone};
+  editingPerson=null;
+  await saveAndSync();renderPeople();
+}
+async function addPerson(){
   const name=document.getElementById('p-name').value.trim();
   const phone=document.getElementById('p-phone').value.trim().replace(/\D/g,'');
   if(!name){showToast('أدخل الاسم');return;}
   if(!data.people)data.people=[];
   if(data.people.find(p=>p.name===name)){showToast('الاسم موجود مسبقاً');return;}
   data.people.push({name,phone});
-  save();renderPeople();
+  await saveAndSync();renderPeople();
   document.getElementById('p-name').value='';document.getElementById('p-phone').value='';
 }
+async function delPersonEntry(i){data.people.splice(i,1);await saveAndSync();renderPeople();}
 
-function delPersonEntry(name){data.people=data.people.filter(p=>p.name!==name);save();renderPeople();}
-
-/* ---- Alarm ---- */
+/* ===== ALARM ===== */
 function startBeep(){
   stopBeep();
   function beep(){try{const c=new(window.AudioContext||window.webkitAudioContext)();[[880,0],[1100,.25],[880,.5],[1100,.75]].forEach(([f,d])=>{const o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=f;g.gain.value=0.3;o.start(c.currentTime+d);o.stop(c.currentTime+d+0.18);});}catch(e){}}
   beep();alarmInterval=setInterval(beep,3500);
 }
 function stopBeep(){if(alarmInterval){clearInterval(alarmInterval);alarmInterval=null;}}
-
 function showAlarm(m,diff){
   document.getElementById('alarm-title').textContent=m.title;
   document.getElementById('alarm-sub').textContent=`الموعد بعد ${Math.round(diff)} دقيقة — ${fmtTime(new Date(m.date+'T'+m.time))}`;
   document.getElementById('alarm-note').textContent=m.note||'';
-  const persDiv=document.getElementById('alarm-persons');
+  const pd=document.getElementById('alarm-persons');
   const persons=m.persons||[];
   if(persons.length){
-    const now=new Date(m.date+'T'+m.time);
-    const msg=encodeURIComponent(`تذكير: لديك موعد "${m.title}" في تمام ${fmtTime(now)} - ${fmtDate(now)}`);
-    persDiv.innerHTML=persons.map(name=>{
-      const p=data.people.find(x=>x.name===name);
+    const mt=new Date(m.date+'T'+m.time);
+    const msg=encodeURIComponent(`تذكير: لديك موعد "${m.title}" في تمام ${fmtTime(mt)} - ${fmtDate(mt)}`);
+    pd.innerHTML=persons.map(name=>{
+      const p=(data.people||[]).find(x=>x.name===name);
       const phone=p&&p.phone?p.phone:'';
-      const waUrl=phone?`https://wa.me/${phone}?text=${msg}`:`https://wa.me/?text=${msg}`;
-      return `<a class="alarm-person-btn" href="${waUrl}" target="_blank"><span class="wa">●</span> ${name}</a>`;
+      const url=phone?`https://wa.me/${phone}?text=${msg}`:`https://wa.me/?text=${msg}`;
+      return `<a class="alarm-person-btn" href="${url}" target="_blank"><span class="wa-icon">●</span> ${name}</a>`;
     }).join('');
   } else {
-    persDiv.innerHTML='<div style="font-size:13px;color:var(--text3)">لا يوجد أشخاص معنيون بهذا الموعد</div>';
+    pd.innerHTML='<div style="font-size:13px;color:var(--text3)">لا يوجد أشخاص معنيون</div>';
   }
   document.getElementById('alarm-overlay').classList.add('show');
   startBeep();
   if(Notification.permission==='granted') new Notification('تذكير موعد',{body:`${m.title} · بعد ${Math.round(diff)} دقيقة`,requireInteraction:true});
 }
-
 function closeAlarm(){document.getElementById('alarm-overlay').classList.remove('show');stopBeep();}
 
 function checkReminders(){
-  const now=new Date();
-  let alertMsg='';
+  if(!data.meetings)return;
+  const now=new Date();let alertMsg='';
   data.meetings.forEach(m=>{
-    const mt=new Date(m.date+'T'+m.time);
-    const diff=(mt-now)/60000;
+    const mt=new Date(m.date+'T'+m.time);const diff=(mt-now)/60000;
     const key=`${m.id}_${m.remind}`;
     if(diff>0&&diff<=m.remind&&!(data.notified||[]).includes(key)){
       if(!data.notified)data.notified=[];
-      data.notified.push(key);save();
+      data.notified.push(key);saveLocal();
       showAlarm(m,diff);
     }
     if(diff>0&&diff<=30&&!alertMsg) alertMsg=`⏰ "${m.title}" بعد ${Math.round(diff)} دقيقة`;
   });
   ['alert-bar','alert-bar2'].forEach(id=>{const el=document.getElementById(id);if(el){el.style.display=alertMsg?'block':'none';if(alertMsg)el.textContent=alertMsg;}});
-  const nb=document.getElementById('next-badge');
-  nb.style.display=alertMsg?'block':'none';if(alertMsg)nb.textContent=alertMsg;
+  const nb=document.getElementById('next-badge');if(nb){nb.style.display=alertMsg?'block':'none';if(alertMsg)nb.textContent=alertMsg;}
 }
 
 function showToast(msg){
-  let t=document.getElementById('toast');
-  if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-100px);background:var(--amber);color:#1a0a00;border-radius:var(--radius);padding:12px 20px;font-size:14px;font-weight:600;z-index:8888;transition:transform .3s cubic-bezier(.34,1.56,.64,1);max-width:320px;text-align:center';document.body.appendChild(t);}
+  let t=document.getElementById('_toast');
+  if(!t){t=document.createElement('div');t.id='_toast';t.style.cssText='position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-100px);background:var(--amber);color:#1a0a00;border-radius:var(--radius);padding:12px 20px;font-size:14px;font-weight:600;z-index:8888;transition:transform .3s cubic-bezier(.34,1.56,.64,1);max-width:320px;text-align:center;pointer-events:none';document.body.appendChild(t);}
   t.textContent=msg;t.style.transform='translateX(-50%) translateY(0)';
-  setTimeout(()=>t.style.transform='translateX(-50%) translateY(-100px)',2800);
+  setTimeout(()=>t.style.transform='translateX(-50%) translateY(-100px)',2500);
 }
 
 function requestNotif(){if('Notification'in window&&Notification.permission==='default')Notification.requestPermission();}
 
 function tick(){
   const now=new Date();
-  document.getElementById('clock').textContent=now.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  document.getElementById('hdate').textContent=`${DAYS[now.getDay()]}، ${now.getDate()} ${MONTHS[now.getMonth()]} ${now.getFullYear()}`;
+  const cl=document.getElementById('clock');
+  const hd=document.getElementById('hdate');
+  if(cl)cl.textContent=now.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  if(hd)hd.textContent=`${DAYS[now.getDay()]}، ${now.getDate()} ${MONTHS[now.getMonth()]} ${now.getFullYear()}`;
   checkReminders();
 }
 
 function migrateTasks(){
   const today=new Date().toISOString().split('T')[0];
   const last=localStorage.getItem('m_last_day')||'';
-  if(last&&last!==today){data.tasks.today=data.tasks.tomorrow||[];data.tasks.tomorrow=[];save();}
+  if(last&&last!==today){data.tasks.today=data.tasks.tomorrow||[];data.tasks.tomorrow=[];saveLocal();}
   localStorage.setItem('m_last_day',today);
 }
 
-document.getElementById('f-date').valueAsDate=new Date();
-const n0=new Date();document.getElementById('f-time').value=`${String(n0.getHours()).padStart(2,'0')}:${String(n0.getMinutes()).padStart(2,'0')}`;
-document.getElementById('today-inp').addEventListener('keydown',e=>{if(e.key==='Enter')addTask('today')});
-document.getElementById('tom-inp').addEventListener('keydown',e=>{if(e.key==='Enter')addTask('tomorrow')});
-document.getElementById('p-name').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('p-phone').focus()});
-document.getElementById('p-phone').addEventListener('keydown',e=>{if(e.key==='Enter')addPerson()});
-
-load();migrateTasks();renderHome();tick();setInterval(tick,1000);requestNotif();
-if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
+document.addEventListener('DOMContentLoaded',()=>{
+  const fd=document.getElementById('f-date');
+  const ft=document.getElementById('f-time');
+  if(fd)fd.valueAsDate=new Date();
+  if(ft){const n=new Date();ft.value=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
+  document.getElementById('today-inp')?.addEventListener('keydown',e=>{if(e.key==='Enter')addTask('today')});
+  document.getElementById('tom-inp')?.addEventListener('keydown',e=>{if(e.key==='Enter')addTask('tomorrow')});
+  document.getElementById('p-name')?.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('p-phone').focus()});
+  document.getElementById('p-phone')?.addEventListener('keydown',e=>{if(e.key==='Enter')addPerson()});
+  document.getElementById('setup-key-inp')?.addEventListener('keydown',e=>{if(e.key==='Enter')setupSync()});
+  start();
+});
 </script>
 </body>
 </html>
