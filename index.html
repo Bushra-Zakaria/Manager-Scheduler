@@ -26,11 +26,28 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden}
 input,select,textarea,button{font-family:var(--font)}
-.app{display:flex;flex-direction:column;min-height:100dvh;max-width:900px;margin:0 auto}
-.header{padding:16px 20px 12px;border-bottom:1px solid var(--bg2);display:flex;align-items:center;justify-content:space-between;gap:12px}
+
+/* Login screen */
+.login-screen{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:20px}
+.login-box{background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius);padding:32px 24px;max-width:380px;width:100%;text-align:center}
+.login-logo{font-size:48px;margin-bottom:16px}
+.login-title{font-size:22px;font-weight:600;margin-bottom:8px}
+.login-sub{font-size:14px;color:var(--text2);margin-bottom:28px;line-height:1.6}
+.google-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:#fff;color:#1a1a1a;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.google-btn:hover{opacity:.9}
+.google-btn:active{opacity:.8}
+.google-icon{width:20px;height:20px}
+.login-note{font-size:12px;color:var(--text3);margin-top:16px;line-height:1.5}
+
+/* App layout */
+.app{display:flex;flex-direction:column;min-height:100dvh;max-width:900px;margin:0 auto;display:none}
+.header{padding:14px 20px 10px;border-bottom:1px solid var(--bg2);display:flex;align-items:center;justify-content:space-between;gap:12px}
 .header-clock{font-size:26px;font-weight:600;letter-spacing:-1px;line-height:1}
 .header-date{font-size:13px;color:var(--text2)}
-.next-badge{background:var(--accent-dim);color:var(--accent);border-radius:var(--radius-sm);padding:6px 10px;font-size:12px;font-weight:500;text-align:center;max-width:200px;line-height:1.4;display:none}
+.header-left{display:flex;align-items:center;gap:10px}
+.user-avatar{width:34px;height:34px;border-radius:50%;border:2px solid var(--accent);object-fit:cover;cursor:pointer}
+.user-initial{width:34px;height:34px;border-radius:50%;background:var(--accent-dim);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;cursor:pointer;flex-shrink:0}
+.next-badge{background:var(--accent-dim);color:var(--accent);border-radius:var(--radius-sm);padding:5px 9px;font-size:11px;font-weight:500;text-align:center;max-width:180px;line-height:1.4;display:none}
 .nav{display:flex;gap:4px;padding:10px 16px;border-bottom:1px solid var(--bg2);overflow-x:auto;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
 .nav-btn{padding:8px 14px;border-radius:var(--radius-sm);border:none;cursor:pointer;font-size:13px;font-weight:500;white-space:nowrap;background:transparent;color:var(--text2);transition:background .15s}
@@ -105,14 +122,6 @@ input,select,textarea,button{font-family:var(--font)}
 .sync-dot.syncing{background:var(--amber);animation:pulse 1s infinite}
 .sync-dot.error{background:var(--red)}
 .empty{text-align:center;padding:32px 20px;color:var(--text3);font-size:14px}
-/* setup screen */
-.setup-box{background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius);padding:24px;max-width:420px;margin:40px auto}
-.setup-box h2{font-size:18px;font-weight:600;margin-bottom:8px;color:var(--text)}
-.setup-box p{font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.6}
-.setup-input{background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius-sm);color:var(--text);padding:12px 14px;font-size:15px;width:100%;margin-bottom:12px}
-.setup-input:focus{outline:none;border-color:var(--accent)}
-.setup-btn{width:100%;padding:13px;background:var(--accent);color:#0c1a2e;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer}
-/* people table */
 .people-table{width:100%;border-collapse:collapse}
 .people-table th{font-size:12px;color:var(--text3);padding:6px 8px;text-align:right;border-bottom:1px solid var(--bg3)}
 .people-table td{font-size:14px;color:var(--text);padding:8px;border-bottom:1px solid var(--bg3);vertical-align:middle}
@@ -123,7 +132,6 @@ input,select,textarea,button{font-family:var(--font)}
 .add-row input{background:var(--bg3);border:1px solid var(--bg4);border-radius:var(--radius-sm);color:var(--text);padding:9px 12px;font-size:14px}
 .add-row input:focus{outline:none;border-color:var(--accent)}
 .add-row button{padding:9px 16px;background:var(--accent);color:#0c1a2e;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
-/* alarm */
 .alarm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px}
 .alarm-overlay.show{display:flex}
 .alarm-icon{font-size:54px;animation:shake .4s infinite}
@@ -133,12 +141,33 @@ input,select,textarea,button{font-family:var(--font)}
 .alarm-persons{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px}
 .alarm-person-btn{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius-sm);padding:10px 16px;font-size:14px;color:var(--text);cursor:pointer;text-decoration:none;transition:background .15s}
 .alarm-person-btn:hover{background:var(--bg3)}
-.wa-icon{color:#25d366;font-size:18px;font-weight:700}
+.wa-icon{color:#25d366;font-weight:700}
 .alarm-close{padding:14px 44px;background:var(--amber);color:#1a0a00;border:none;border-radius:var(--radius);font-size:16px;font-weight:700;cursor:pointer;margin-top:6px}
+/* user menu */
+.user-menu{position:fixed;top:60px;left:16px;background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--radius);padding:12px;z-index:1000;min-width:200px;display:none}
+.user-menu.show{display:block}
+.user-name{font-size:14px;font-weight:500;margin-bottom:4px}
+.user-email{font-size:12px;color:var(--text3);margin-bottom:12px}
+.logout-btn{width:100%;padding:9px;background:var(--red-dim);color:var(--red);border:1px solid var(--red-dim);border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer}
 </style>
 </head>
 <body>
 
+<!-- LOGIN -->
+<div class="login-screen" id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">📅</div>
+    <div class="login-title">مساعد المدير</div>
+    <div class="login-sub">سجّل دخولك بحساب جوجل لمزامنة مواعيدك ومهامك على جميع أجهزتك تلقائياً</div>
+    <button class="google-btn" onclick="signInWithGoogle()">
+      <svg class="google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      تسجيل الدخول بجوجل
+    </button>
+    <div class="login-note">بياناتك محفوظة بشكل آمن في حسابك الشخصي على جوجل فقط</div>
+  </div>
+</div>
+
+<!-- ALARM -->
 <div class="alarm-overlay" id="alarm-overlay">
   <div class="alarm-icon">🔔</div>
   <div class="alarm-title" id="alarm-title"></div>
@@ -149,25 +178,24 @@ input,select,textarea,button{font-family:var(--font)}
   <button class="alarm-close" onclick="closeAlarm()">إغلاق التنبيه ✓</button>
 </div>
 
-<!-- SETUP SCREEN -->
-<div id="setup-screen" style="padding:16px;display:none">
-  <div class="setup-box">
-    <h2>إعداد المزامنة بين الأجهزة</h2>
-    <p>لمزامنة البيانات بين الجوال والكمبيوتر، أدخل مفتاحاً سرياً خاصاً بك. استخدم نفس المفتاح على جميع أجهزتك.</p>
-    <input class="setup-input" id="setup-key-inp" type="text" placeholder="مثال: bushra2025secret" autocomplete="off"/>
-    <p style="font-size:11px;color:var(--text3);margin-bottom:16px">اختر كلمة سرية لا يعرفها غيرك. ستُستخدم لتشفير بياناتك.</p>
-    <button class="setup-btn" onclick="setupSync()">بدء الاستخدام</button>
-  </div>
+<!-- USER MENU -->
+<div class="user-menu" id="user-menu">
+  <div class="user-name" id="um-name"></div>
+  <div class="user-email" id="um-email"></div>
+  <button class="logout-btn" onclick="signOut()">تسجيل الخروج</button>
 </div>
 
-<div class="app" id="main-app" style="display:none">
-  <div class="alarm-overlay" style="display:none"></div>
+<!-- MAIN APP -->
+<div class="app" id="main-app">
   <div class="header">
     <div>
       <div class="header-clock" id="clock">--:--</div>
       <div class="header-date" id="hdate">...</div>
     </div>
-    <div class="next-badge" id="next-badge"></div>
+    <div class="header-left">
+      <div class="next-badge" id="next-badge"></div>
+      <div class="user-initial" id="user-initial" onclick="toggleUserMenu()">؟</div>
+    </div>
   </div>
   <nav class="nav">
     <button class="nav-btn active" onclick="go('home')">الرئيسية</button>
@@ -182,7 +210,6 @@ input,select,textarea,button{font-family:var(--font)}
     <div class="sync-bar">
       <span><span class="sync-dot" id="sync-dot"></span><span id="sync-label"> جاري المزامنة...</span></span>
       <span id="sync-time" style="font-size:11px"></span>
-      <button onclick="syncNow()" style="background:none;border:none;cursor:pointer;color:var(--accent);font-size:12px;white-space:nowrap">↺ مزامنة</button>
     </div>
     <div class="alert-bar" id="alert-bar"></div>
     <div class="summary">
@@ -259,182 +286,179 @@ input,select,textarea,button{font-family:var(--font)}
     </div>
     <div style="font-size:12px;color:var(--text3);padding:4px 2px;line-height:1.7">
       أدخل الرقم بصيغة دولية بدون + مثال: 966501234567<br/>
-      اضغط ✏️ للتعديل المباشر على الاسم أو الرقم
+      اضغط ✏️ للتعديل المباشر
     </div>
   </div>
 </div>
 
-<script>
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as fbSignOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+import { getFirestore, doc, setDoc, onSnapshot, getDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBUj2ZyjV8YVB78Ml1o_jydbTvU_keFv0o",
+  authDomain: "manager-scheduler-3272c.firebaseapp.com",
+  projectId: "manager-scheduler-3272c",
+  storageBucket: "manager-scheduler-3272c.firebasestorage.app",
+  messagingSenderId: "320863914874",
+  appId: "1:320863914874:web:66f7f4e9b5714edf2b64c3",
+  measurementId: "G-8RRHNSXQ2J"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
 const DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
 const MONTHS=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
 
-let DB_URL='';
-let data={meetings:[],tasks:{today:[],tomorrow:[]},people:[],notified:[]};
+let userData={meetings:[],tasks:{today:[],tomorrow:[]},people:[],notified:[]};
+let currentUser=null;
 let alarmInterval=null;
 let selectedPersons=[];
 let editingPerson=null;
+let unsubscribe=null;
 
-/* ===== SYNC SETUP ===== */
-function setupSync(){
-  const key=document.getElementById('setup-key-inp').value.trim();
-  if(!key||key.length<4){showToast('أدخل مفتاحاً لا يقل عن 4 أحرف');return;}
-  // Use JSONBin.io free tier with key as bin identifier stored locally
-  localStorage.setItem('mgr_sync_key',key);
-  initApp();
-}
-
-function getSyncKey(){return localStorage.getItem('mgr_sync_key');}
-
-/* Use a simple approach: store data in JSONBin.io using the key as part of bin name */
-/* For free cross-device sync we use a public JSONBin */
-const JSONBIN_API='https://api.jsonbin.io/v3';
-const JSONBIN_MASTER='$2a$10$placeholder'; // will be set per user
-
-function getBinId(){return localStorage.getItem('mgr_bin_id');}
-function setBinId(id){localStorage.setItem('mgr_bin_id',id);}
-
-async function syncNow(){
-  setSyncStatus('syncing','جاري المزامنة...');
+window.signInWithGoogle=async()=>{
   try{
-    const binId=getBinId();
-    if(!binId){
-      await createBin();
-    } else {
-      await pullData();
-    }
-  }catch(e){setSyncStatus('error','خطأ في المزامنة');}
-}
+    const provider=new GoogleAuthProvider();
+    await signInWithPopup(auth,provider);
+  }catch(e){showToast('حدث خطأ في تسجيل الدخول');}
+};
 
-async function createBin(){
-  try{
-    const key=getSyncKey();
-    const res=await fetch('https://api.jsonbin.io/v3/b',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','X-Bin-Name':'mgr_'+key,'X-Bin-Private':'false'},
-      body:JSON.stringify({data,key,v:1})
-    });
-    const json=await res.json();
-    if(json.metadata&&json.metadata.id){
-      setBinId(json.metadata.id);
-      setSyncStatus('ok','تمت المزامنة');
-    }
-  }catch(e){
-    setSyncStatus('local','محفوظ محلياً فقط');
-    saveLocal();
+window.signOut=async()=>{
+  if(unsubscribe)unsubscribe();
+  await fbSignOut(auth);
+  document.getElementById('user-menu').classList.remove('show');
+  document.getElementById('main-app').style.display='none';
+  document.getElementById('login-screen').style.display='flex';
+};
+
+window.toggleUserMenu=()=>{
+  document.getElementById('user-menu').classList.toggle('show');
+};
+
+document.addEventListener('click',(e)=>{
+  const menu=document.getElementById('user-menu');
+  const btn=document.getElementById('user-initial');
+  if(!menu.contains(e.target)&&!btn.contains(e.target)) menu.classList.remove('show');
+});
+
+onAuthStateChanged(auth,user=>{
+  if(user){
+    currentUser=user;
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('main-app').style.display='flex';
+    const initial=user.displayName?user.displayName[0]:'م';
+    document.getElementById('user-initial').textContent=initial;
+    document.getElementById('um-name').textContent=user.displayName||'مستخدم';
+    document.getElementById('um-email').textContent=user.email||'';
+    startRealtimeSync(user.uid);
+    initUI();
+  } else {
+    currentUser=null;
+    document.getElementById('login-screen').style.display='flex';
+    document.getElementById('main-app').style.display='none';
   }
-}
+});
 
-async function pushData(){
-  saveLocal();
-  const binId=getBinId();
-  if(!binId){await createBin();return;}
-  try{
-    await fetch(`https://api.jsonbin.io/v3/b/${binId}`,{
-      method:'PUT',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({data,key:getSyncKey(),v:1,ts:Date.now()})
-    });
-    setSyncStatus('ok','تمت المزامنة '+new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'}));
-  }catch(e){setSyncStatus('local','محفوظ محلياً فقط');}
-}
-
-async function pullData(){
-  const binId=getBinId();
-  if(!binId){saveLocal();setSyncStatus('local','محفوظ محلياً');return;}
-  try{
-    const res=await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`);
-    const json=await res.json();
-    if(json.record&&json.record.data){
-      const remote=json.record.data;
-      const localTs=data.ts||0;
-      const remoteTs=json.record.ts||0;
-      if(remoteTs>localTs){
-        data=remote;
-        data.ts=remoteTs;
-        saveLocal();
+function startRealtimeSync(uid){
+  if(unsubscribe)unsubscribe();
+  const docRef=doc(db,'users',uid);
+  unsubscribe=onSnapshot(docRef,(snap)=>{
+    if(snap.exists()){
+      const remote=snap.data();
+      userData=remote;
+      setSyncStatus('ok');
+      const cur=document.querySelector('.nav-btn.active');
+      if(cur){
+        const sec=['home','meetings','tasks','add','people'];
+        const idx=Array.from(document.querySelectorAll('.nav-btn')).indexOf(cur);
+        if(idx>=0&&sec[idx]!=='add') refreshCurrentView(sec[idx]);
       }
-      setSyncStatus('ok','تمت المزامنة '+new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'}));
-      renderHome();
+    } else {
+      saveToFirestore();
     }
-  }catch(e){setSyncStatus('local','محفوظ محلياً فقط');}
+  },(err)=>{setSyncStatus('error');});
 }
 
-function setSyncStatus(type,msg){
+async function saveToFirestore(){
+  if(!currentUser)return;
+  setSyncStatus('syncing');
+  try{
+    userData.updatedAt=Date.now();
+    await setDoc(doc(db,'users',currentUser.uid),userData);
+    setSyncStatus('ok');
+  }catch(e){setSyncStatus('error');}
+}
+
+function setSyncStatus(type){
   const dot=document.getElementById('sync-dot');
   const lbl=document.getElementById('sync-label');
+  const tim=document.getElementById('sync-time');
   if(!dot)return;
-  dot.className='sync-dot'+(type==='syncing'?' syncing':type==='error'?' error':'');
+  const map={ok:['','مزامنة تلقائية'],syncing:['syncing','جاري الحفظ...'],error:['error','خطأ في الاتصال']};
+  const [cls,msg]=map[type]||['',''];
+  dot.className='sync-dot'+(cls?' '+cls:'');
   lbl.textContent=' '+msg;
+  if(type==='ok'&&tim) tim.textContent=new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});
 }
 
-function saveLocal(){
-  data.ts=Date.now();
-  try{localStorage.setItem('mgr_data_v4',JSON.stringify(data));}catch(e){}
+function refreshCurrentView(sec){
+  if(sec==='home')renderHome();
+  if(sec==='meetings')renderMeetings();
+  if(sec==='tasks')renderTasks();
+  if(sec==='people')renderPeople();
 }
 
-function loadLocal(){
-  try{const r=localStorage.getItem('mgr_data_v4');if(r)data=JSON.parse(r);}catch(e){}
-}
-
-async function saveAndSync(){
-  saveLocal();
-  await pushData();
-}
-
-/* ===== INIT ===== */
-function initApp(){
-  document.getElementById('setup-screen').style.display='none';
-  document.getElementById('main-app').style.display='flex';
-  loadLocal();
+function initUI(){
   migrateTasks();
   renderHome();
   tick();
   setInterval(tick,1000);
-  setInterval(()=>pullData(),30000);
   requestNotif();
-  syncNow();
   if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
+  const fd=document.getElementById('f-date');
+  const ft=document.getElementById('f-time');
+  if(fd)fd.valueAsDate=new Date();
+  if(ft){const n=new Date();ft.value=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
+  document.getElementById('today-inp').addEventListener('keydown',e=>{if(e.key==='Enter')addTask('today')});
+  document.getElementById('tom-inp').addEventListener('keydown',e=>{if(e.key==='Enter')addTask('tomorrow')});
+  document.getElementById('p-name').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('p-phone').focus()});
+  document.getElementById('p-phone').addEventListener('keydown',e=>{if(e.key==='Enter')addPerson()});
 }
 
-function start(){
-  if(getSyncKey()) initApp();
-  else {document.getElementById('setup-screen').style.display='block';}
-}
-
-/* ===== NAV ===== */
-function go(sec){
+window.go=function(sec){
   document.querySelectorAll('.content').forEach(e=>e.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(e=>e.classList.remove('active'));
   document.getElementById('sec-'+sec).classList.add('active');
   const idx={home:0,meetings:1,tasks:2,add:3,people:4}[sec];
   document.querySelectorAll('.nav-btn')[idx].classList.add('active');
-  if(sec==='home')renderHome();
-  if(sec==='meetings')renderMeetings();
-  if(sec==='tasks')renderTasks();
+  refreshCurrentView(sec);
   if(sec==='add'){selectedPersons=[];renderPicker();}
-  if(sec==='people')renderPeople();
-}
+};
 
 function fmtDate(dt){return `${DAYS[dt.getDay()]}، ${dt.getDate()} ${MONTHS[dt.getMonth()]}`}
 function fmtTime(dt){return dt.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'})}
 
-/* ===== PERSON PICKER ===== */
-function renderPicker(){
+/* PICKER */
+window.renderPicker=function(){
   const picker=document.getElementById('person-picker');
   const sel=document.getElementById('picker-select');
   sel.innerHTML='<option value="">+ أضف شخص...</option>';
-  (data.people||[]).filter(p=>!selectedPersons.includes(p.name)).forEach(p=>{
+  (userData.people||[]).filter(p=>!selectedPersons.includes(p.name)).forEach(p=>{
     const o=document.createElement('option');o.value=p.name;o.textContent=p.name;sel.appendChild(o);
   });
   const chips=selectedPersons.map(n=>`<div class="person-picker-chip">${n}<button onclick="removePickedPerson('${n}')">✕</button></div>`).join('');
-  picker.innerHTML=chips;
-  picker.appendChild(sel);
-}
-function pickPerson(sel){if(!sel.value)return;selectedPersons.push(sel.value);renderPicker();}
-function removePickedPerson(name){selectedPersons=selectedPersons.filter(n=>n!==name);renderPicker();}
-function focusPicker(){document.getElementById('picker-select').focus();}
+  picker.innerHTML=chips;picker.appendChild(sel);
+};
+window.pickPerson=function(sel){if(!sel.value)return;selectedPersons.push(sel.value);renderPicker();};
+window.removePickedPerson=function(name){selectedPersons=selectedPersons.filter(n=>n!==name);renderPicker();};
+window.focusPicker=function(){document.getElementById('picker-select').focus();};
 
-/* ===== MEETINGS ===== */
+/* MEETINGS */
 function renderMeetingItem(m,now){
   const mt=new Date(m.date+'T'+m.time);
   const diff=(mt-now)/60000;
@@ -444,53 +468,43 @@ function renderMeetingItem(m,now){
   else if(diff<=30){badge='<span class="badge badge-soon">قريباً</span>';dot='soon';}
   else badge='<span class="badge badge-ok">قادم</span>';
   const pHtml=(m.persons||[]).length?`<div class="persons-row">${(m.persons).map(n=>`<span class="person-tag">👤 ${n}</span>`).join('')}</div>`:'';
-  return `<div class="meeting">
-    <div class="meeting-dot ${dot}"></div>
-    <div class="meeting-body">
-      <div class="meeting-title">${m.title}</div>
-      <div class="meeting-meta">${fmtDate(mt)} · ${fmtTime(mt)} · تذكير قبل ${m.remind} دقيقة</div>
-      ${pHtml}${m.note?`<div class="meeting-note">${m.note}</div>`:''}
-    </div>
-    <div class="meeting-actions">${badge}<button class="del-btn" onclick="delMeeting(${m.id})">✕</button></div>
-  </div>`;
+  return `<div class="meeting"><div class="meeting-dot ${dot}"></div><div class="meeting-body"><div class="meeting-title">${m.title}</div><div class="meeting-meta">${fmtDate(mt)} · ${fmtTime(mt)} · تذكير قبل ${m.remind} دقيقة</div>${pHtml}${m.note?`<div class="meeting-note">${m.note}</div>`:''}</div><div class="meeting-actions">${badge}<button class="del-btn" onclick="delMeeting(${m.id})">✕</button></div></div>`;
 }
 
-function renderMeetings(){
+window.renderMeetings=function(){
   const now=new Date(),ts=now.toISOString().split('T')[0];
   const list=document.getElementById('meetings-list');
-  if(!data.meetings.length){list.innerHTML='<div class="empty">لا توجد مواعيد مسجلة</div>';return;}
-  const up=data.meetings.filter(m=>m.date>=ts);
-  const past=data.meetings.filter(m=>m.date<ts);
-  list.innerHTML=(up.length?`<div class="card"><div class="card-title">المواعيد القادمة (${up.length})</div>${up.map(m=>renderMeetingItem(m,now)).join('')}</div>`:'')
-    +(past.length?`<div class="card"><div class="card-title">المواعيد السابقة</div>${past.map(m=>renderMeetingItem(m,now)).join('')}</div>`:'');
-}
+  if(!userData.meetings.length){list.innerHTML='<div class="empty">لا توجد مواعيد مسجلة</div>';return;}
+  const up=userData.meetings.filter(m=>m.date>=ts);
+  const past=userData.meetings.filter(m=>m.date<ts);
+  list.innerHTML=(up.length?`<div class="card"><div class="card-title">المواعيد القادمة (${up.length})</div>${up.map(m=>renderMeetingItem(m,now)).join('')}</div>`:'')+(past.length?`<div class="card"><div class="card-title">المواعيد السابقة</div>${past.map(m=>renderMeetingItem(m,now)).join('')}</div>`:'');
+};
 
-async function saveMeeting(){
+window.saveMeeting=async function(){
   const title=document.getElementById('f-title').value.trim();
   const date=document.getElementById('f-date').value;
   const time=document.getElementById('f-time').value;
   const remind=parseInt(document.getElementById('f-remind').value);
   const note=document.getElementById('f-note').value.trim();
   if(!title||!date||!time){showToast('يرجى تعبئة العنوان والتاريخ والوقت');return;}
-  data.meetings.push({id:Date.now(),title,date,time,remind,persons:[...selectedPersons],note});
-  data.meetings.sort((a,b)=>new Date(a.date+'T'+a.time)-new Date(b.date+'T'+b.time));
+  userData.meetings.push({id:Date.now(),title,date,time,remind,persons:[...selectedPersons],note});
+  userData.meetings.sort((a,b)=>new Date(a.date+'T'+a.time)-new Date(b.date+'T'+b.time));
   document.getElementById('f-title').value='';document.getElementById('f-note').value='';
   selectedPersons=[];
-  showToast('جاري الحفظ...');
-  await saveAndSync();
+  await saveToFirestore();
   showToast('تم حفظ الموعد ✓');
   requestNotif();
   setTimeout(()=>go('meetings'),800);
-}
+};
 
-async function delMeeting(id){data.meetings=data.meetings.filter(m=>m.id!==id);await saveAndSync();renderMeetings();}
+window.delMeeting=async function(id){userData.meetings=userData.meetings.filter(m=>m.id!==id);await saveToFirestore();renderMeetings();};
 
-/* ===== TASKS ===== */
-function renderHome(){
+/* TASKS */
+window.renderHome=function(){
   const now=new Date(),ts=now.toISOString().split('T')[0];
-  const tm=data.meetings.filter(m=>m.date===ts);
-  const up=data.meetings.filter(m=>new Date(m.date+'T'+m.time)>now);
-  const pend=data.tasks.today.filter(t=>!t.done);
+  const tm=userData.meetings.filter(m=>m.date===ts);
+  const up=userData.meetings.filter(m=>new Date(m.date+'T'+m.time)>now);
+  const pend=(userData.tasks.today||[]).filter(t=>!t.done);
   document.getElementById('s-today').textContent=tm.length;
   document.getElementById('s-upcoming').textContent=up.length;
   document.getElementById('s-tasks').textContent=pend.length;
@@ -499,76 +513,67 @@ function renderHome(){
   else nx.innerHTML='<div class="empty" style="padding:16px 0">لا توجد مواعيد قادمة</div>';
   const ht=document.getElementById('home-tasks');
   ht.innerHTML=pend.length?pend.map(t=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--bg3)"><span style="color:var(--green)">○</span><span style="font-size:14px">${t.text}</span></div>`).join(''):'<div class="empty" style="padding:16px 0">أنجزت كل المهام!</div>';
-}
+};
 
-function renderTasks(){
+window.renderTasks=function(){
   const now=new Date(),tom=new Date(now);tom.setDate(tom.getDate()+1);
   document.getElementById('today-lbl').textContent=`${now.getDate()} ${MONTHS[now.getMonth()]}`;
   document.getElementById('tom-lbl').textContent=`${tom.getDate()} ${MONTHS[tom.getMonth()]}`;
   ['today','tomorrow'].forEach(w=>{
     const el=document.getElementById(w==='today'?'today-list':'tom-list');
-    if(!data.tasks[w].length){el.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">لا توجد مهام بعد</div>';return;}
-    el.innerHTML=data.tasks[w].map(t=>`<div class="task-item"><input type="checkbox" class="task-check" ${t.done?'checked':''} onchange="toggleTask('${w}',${t.id})"/><span class="task-text ${t.done?'done':''}" onclick="toggleTask('${w}',${t.id})">${t.text}</span><button class="task-del" onclick="delTask('${w}',${t.id})">✕</button></div>`).join('');
+    const tasks=userData.tasks[w]||[];
+    if(!tasks.length){el.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">لا توجد مهام بعد</div>';return;}
+    el.innerHTML=tasks.map(t=>`<div class="task-item"><input type="checkbox" class="task-check" ${t.done?'checked':''} onchange="toggleTask('${w}',${t.id})"/><span class="task-text ${t.done?'done':''}" onclick="toggleTask('${w}',${t.id})">${t.text}</span><button class="task-del" onclick="delTask('${w}',${t.id})">✕</button></div>`).join('');
   });
-}
+};
 
-async function addTask(w){const inp=document.getElementById(w==='today'?'today-inp':'tom-inp');const v=inp.value.trim();if(!v)return;data.tasks[w].push({id:Date.now(),text:v,done:false});await saveAndSync();renderTasks();inp.value='';inp.focus();}
-async function toggleTask(w,id){const t=data.tasks[w].find(t=>t.id===id);if(t){t.done=!t.done;await saveAndSync();renderTasks();}}
-async function delTask(w,id){data.tasks[w]=data.tasks[w].filter(t=>t.id!==id);await saveAndSync();renderTasks();}
+window.addTask=async function(w){const inp=document.getElementById(w==='today'?'today-inp':'tom-inp');const v=inp.value.trim();if(!v)return;if(!userData.tasks[w])userData.tasks[w]=[];userData.tasks[w].push({id:Date.now(),text:v,done:false});await saveToFirestore();renderTasks();inp.value='';inp.focus();};
+window.toggleTask=async function(w,id){const t=(userData.tasks[w]||[]).find(t=>t.id===id);if(t){t.done=!t.done;await saveToFirestore();renderTasks();}};
+window.delTask=async function(w,id){userData.tasks[w]=(userData.tasks[w]||[]).filter(t=>t.id!==id);await saveToFirestore();renderTasks();};
 
-/* ===== PEOPLE ===== */
-function renderPeople(){
+/* PEOPLE */
+window.renderPeople=function(){
   const wrap=document.getElementById('people-table-wrap');
-  if(!data.people||!data.people.length){wrap.innerHTML='<div class="empty" style="padding:16px 0">لا يوجد أشخاص بعد</div>';return;}
-  wrap.innerHTML=`<table class="people-table">
-    <thead><tr><th>الاسم</th><th>رقم الجوال</th><th></th></tr></thead>
-    <tbody>`+data.people.map((p,i)=>{
-      if(editingPerson===i){
-        return `<tr>
-          <td><input class="inline-edit" id="ep-name" value="${p.name}" onkeydown="if(event.key==='Enter')savePerson(${i})"/></td>
-          <td><input class="inline-edit" id="ep-phone" value="${p.phone||''}" style="direction:ltr" onkeydown="if(event.key==='Enter')savePerson(${i})"/></td>
-          <td style="white-space:nowrap"><button class="edit-btn" onclick="savePerson(${i})">✓</button> <button class="del-btn" onclick="cancelEdit()">✕</button></td>
-        </tr>`;
-      }
-      return `<tr>
-        <td>${p.name}</td>
-        <td style="direction:ltr;text-align:left;font-size:13px">${p.phone||'—'}</td>
-        <td style="white-space:nowrap"><button class="edit-btn" onclick="startEdit(${i})">✏️</button> <button class="del-btn" onclick="delPersonEntry(${i})">✕</button></td>
-      </tr>`;
-    }).join('')+`</tbody></table>`;
-  if(editingPerson!==null) setTimeout(()=>{const el=document.getElementById('ep-name');if(el)el.focus();},50);
-}
+  if(!userData.people||!userData.people.length){wrap.innerHTML='<div class="empty" style="padding:16px 0">لا يوجد أشخاص بعد</div>';return;}
+  wrap.innerHTML=`<table class="people-table"><thead><tr><th>الاسم</th><th>رقم الجوال</th><th></th></tr></thead><tbody>`+userData.people.map((p,i)=>{
+    if(editingPerson===i){
+      return `<tr><td><input class="inline-edit" id="ep-name" value="${p.name}" onkeydown="if(event.key==='Enter')savePerson(${i})"/></td><td><input class="inline-edit" id="ep-phone" value="${p.phone||''}" style="direction:ltr" onkeydown="if(event.key==='Enter')savePerson(${i})"/></td><td style="white-space:nowrap"><button class="edit-btn" onclick="savePerson(${i})">✓</button> <button class="del-btn" onclick="cancelEdit()">✕</button></td></tr>`;
+    }
+    return `<tr><td>${p.name}</td><td style="direction:ltr;text-align:left;font-size:13px">${p.phone||'—'}</td><td style="white-space:nowrap"><button class="edit-btn" onclick="startEdit(${i})">✏️</button> <button class="del-btn" onclick="delPersonEntry(${i})">✕</button></td></tr>`;
+  }).join('')+`</tbody></table>`;
+  if(editingPerson!==null)setTimeout(()=>{const el=document.getElementById('ep-name');if(el)el.focus();},50);
+};
 
-function startEdit(i){editingPerson=i;renderPeople();}
-function cancelEdit(){editingPerson=null;renderPeople();}
-async function savePerson(i){
+window.startEdit=function(i){editingPerson=i;renderPeople();};
+window.cancelEdit=function(){editingPerson=null;renderPeople();};
+window.savePerson=async function(i){
   const name=document.getElementById('ep-name').value.trim();
   const phone=document.getElementById('ep-phone').value.trim().replace(/\D/g,'');
   if(!name){showToast('الاسم مطلوب');return;}
-  data.people[i]={name,phone};
-  editingPerson=null;
-  await saveAndSync();renderPeople();
-}
-async function addPerson(){
+  userData.people[i]={name,phone};editingPerson=null;
+  await saveToFirestore();renderPeople();
+};
+window.addPerson=async function(){
   const name=document.getElementById('p-name').value.trim();
   const phone=document.getElementById('p-phone').value.trim().replace(/\D/g,'');
   if(!name){showToast('أدخل الاسم');return;}
-  if(!data.people)data.people=[];
-  if(data.people.find(p=>p.name===name)){showToast('الاسم موجود مسبقاً');return;}
-  data.people.push({name,phone});
-  await saveAndSync();renderPeople();
+  if(!userData.people)userData.people=[];
+  if(userData.people.find(p=>p.name===name)){showToast('الاسم موجود مسبقاً');return;}
+  userData.people.push({name,phone});
+  await saveToFirestore();renderPeople();
   document.getElementById('p-name').value='';document.getElementById('p-phone').value='';
-}
-async function delPersonEntry(i){data.people.splice(i,1);await saveAndSync();renderPeople();}
+};
+window.delPersonEntry=async function(i){userData.people.splice(i,1);await saveToFirestore();renderPeople();};
 
-/* ===== ALARM ===== */
+/* ALARM */
 function startBeep(){
   stopBeep();
   function beep(){try{const c=new(window.AudioContext||window.webkitAudioContext)();[[880,0],[1100,.25],[880,.5],[1100,.75]].forEach(([f,d])=>{const o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=f;g.gain.value=0.3;o.start(c.currentTime+d);o.stop(c.currentTime+d+0.18);});}catch(e){}}
   beep();alarmInterval=setInterval(beep,3500);
 }
 function stopBeep(){if(alarmInterval){clearInterval(alarmInterval);alarmInterval=null;}}
-function showAlarm(m,diff){
+
+window.showAlarm=function(m,diff){
   document.getElementById('alarm-title').textContent=m.title;
   document.getElementById('alarm-sub').textContent=`الموعد بعد ${Math.round(diff)} دقيقة — ${fmtTime(new Date(m.date+'T'+m.time))}`;
   document.getElementById('alarm-note').textContent=m.note||'';
@@ -578,7 +583,7 @@ function showAlarm(m,diff){
     const mt=new Date(m.date+'T'+m.time);
     const msg=encodeURIComponent(`تذكير: لديك موعد "${m.title}" في تمام ${fmtTime(mt)} - ${fmtDate(mt)}`);
     pd.innerHTML=persons.map(name=>{
-      const p=(data.people||[]).find(x=>x.name===name);
+      const p=(userData.people||[]).find(x=>x.name===name);
       const phone=p&&p.phone?p.phone:'';
       const url=phone?`https://wa.me/${phone}?text=${msg}`:`https://wa.me/?text=${msg}`;
       return `<a class="alarm-person-btn" href="${url}" target="_blank"><span class="wa-icon">●</span> ${name}</a>`;
@@ -589,18 +594,20 @@ function showAlarm(m,diff){
   document.getElementById('alarm-overlay').classList.add('show');
   startBeep();
   if(Notification.permission==='granted') new Notification('تذكير موعد',{body:`${m.title} · بعد ${Math.round(diff)} دقيقة`,requireInteraction:true});
-}
-function closeAlarm(){document.getElementById('alarm-overlay').classList.remove('show');stopBeep();}
+};
+
+window.closeAlarm=function(){document.getElementById('alarm-overlay').classList.remove('show');stopBeep();};
 
 function checkReminders(){
-  if(!data.meetings)return;
+  if(!userData.meetings||!currentUser)return;
   const now=new Date();let alertMsg='';
-  data.meetings.forEach(m=>{
+  userData.meetings.forEach(m=>{
     const mt=new Date(m.date+'T'+m.time);const diff=(mt-now)/60000;
     const key=`${m.id}_${m.remind}`;
-    if(diff>0&&diff<=m.remind&&!(data.notified||[]).includes(key)){
-      if(!data.notified)data.notified=[];
-      data.notified.push(key);saveLocal();
+    if(diff>0&&diff<=m.remind&&!(userData.notified||[]).includes(key)){
+      if(!userData.notified)userData.notified=[];
+      userData.notified.push(key);
+      saveToFirestore();
       showAlarm(m,diff);
     }
     if(diff>0&&diff<=30&&!alertMsg) alertMsg=`⏰ "${m.title}" بعد ${Math.round(diff)} دقيقة`;
@@ -620,8 +627,7 @@ function requestNotif(){if('Notification'in window&&Notification.permission==='d
 
 function tick(){
   const now=new Date();
-  const cl=document.getElementById('clock');
-  const hd=document.getElementById('hdate');
+  const cl=document.getElementById('clock');const hd=document.getElementById('hdate');
   if(cl)cl.textContent=now.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
   if(hd)hd.textContent=`${DAYS[now.getDay()]}، ${now.getDate()} ${MONTHS[now.getMonth()]} ${now.getFullYear()}`;
   checkReminders();
@@ -630,22 +636,11 @@ function tick(){
 function migrateTasks(){
   const today=new Date().toISOString().split('T')[0];
   const last=localStorage.getItem('m_last_day')||'';
-  if(last&&last!==today){data.tasks.today=data.tasks.tomorrow||[];data.tasks.tomorrow=[];saveLocal();}
+  if(last&&last!==today){userData.tasks.today=userData.tasks.tomorrow||[];userData.tasks.tomorrow=[];saveToFirestore();}
   localStorage.setItem('m_last_day',today);
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
-  const fd=document.getElementById('f-date');
-  const ft=document.getElementById('f-time');
-  if(fd)fd.valueAsDate=new Date();
-  if(ft){const n=new Date();ft.value=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
-  document.getElementById('today-inp')?.addEventListener('keydown',e=>{if(e.key==='Enter')addTask('today')});
-  document.getElementById('tom-inp')?.addEventListener('keydown',e=>{if(e.key==='Enter')addTask('tomorrow')});
-  document.getElementById('p-name')?.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('p-phone').focus()});
-  document.getElementById('p-phone')?.addEventListener('keydown',e=>{if(e.key==='Enter')addPerson()});
-  document.getElementById('setup-key-inp')?.addEventListener('keydown',e=>{if(e.key==='Enter')setupSync()});
-  start();
-});
+window.showToast=showToast;
 </script>
 </body>
 </html>
